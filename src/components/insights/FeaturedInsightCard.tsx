@@ -12,12 +12,12 @@ export function FeaturedInsightCard({ article }: FeaturedInsightCardProps) {
       aria-labelledby={`${article.id}-title`}
       className="grid overflow-hidden rounded-[20px] border border-orange/10 bg-white lg:grid-cols-[625fr_480fr]"
     >
-      <div className="relative min-h-[280px] bg-peach sm:min-h-[360px] lg:min-h-[384px]">
+      <div className="relative -mb-px min-h-[280px] overflow-hidden bg-[#0f0d1e] sm:min-h-[360px] lg:mb-0 lg:min-h-[384px] lg:-mr-px lg:z-[1]">
         <Image
           src={article.image}
           alt=""
           fill
-          className="object-cover"
+          className="object-cover object-left scale-[1.015] origin-left"
           sizes="(max-width: 1024px) 100vw, 56vw"
           priority
           aria-hidden
@@ -25,13 +25,13 @@ export function FeaturedInsightCard({ article }: FeaturedInsightCardProps) {
       </div>
 
       <div className="flex flex-col justify-center p-8 md:p-12">
-        <span className="inline-block w-fit rounded-full bg-peach-soft px-[11.2px] py-[3.5px] font-body text-[12.8px] leading-[18px] text-gray-500">
+        <span className="inline-block w-fit rounded-full bg-peach-soft px-[11.2px] py-[3.5px] font-body text-[12.8px] font-bold leading-[18px] text-orange-dark">
           {article.category}
         </span>
 
         <h2
           id={`${article.id}-title`}
-          className="mt-5 font-display text-[clamp(1.35rem,2.5vw,1.69rem)] font-extrabold leading-[1.2] tracking-[-0.02em] text-text-dark"
+          className="mt-5 font-display text-[clamp(1.35rem,2.5vw,27.05px)] font-extrabold leading-[29px] tracking-[-0.54px] text-text-dark"
         >
           {article.title}
         </h2>
@@ -50,7 +50,7 @@ export function FeaturedInsightCard({ article }: FeaturedInsightCardProps) {
 
         <a
           href="#insights-articles"
-          className="mt-[19px] inline-flex w-fit items-center gap-2 font-display text-[15.2px] font-bold leading-[21px] text-orange transition-colors hover:text-orange-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
+          className="mt-5 inline-flex w-fit items-center gap-[6.4px] font-display text-[15.2px] font-bold leading-[21px] text-orange transition-colors hover:text-orange-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
         >
           Read Article
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden>

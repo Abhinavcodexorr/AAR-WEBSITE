@@ -22,10 +22,10 @@ export const featuredInsight: InsightArticle = {
   category: "AI & Research Technology",
   title: "The Future of AI-Led Market Research",
   excerpt:
-    "How artificial intelligence is transforming data collection, analysis, and insight generation — and what it means for strategic decision-makers.",
+    "How artificial intelligence is transforming data collection, analysis, insight generation, and strategic decision-making for competitive organizations.",
   readTime: "7 min read",
   date: "May 2026",
-  image: "/images/insights/featured-ai-research.png",
+  image: "/images/insights/featured-ai-led-research.png",
   featured: true,
 };
 

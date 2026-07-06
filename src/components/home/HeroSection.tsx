@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { GradientText } from "@/components/ui/GradientText";
 import { hero } from "@/data/home";
+import { HeroParticles } from "./HeroParticles";
 import { HeroStats } from "./HeroStats";
 
 export function HeroSection() {
@@ -13,14 +13,7 @@ export function HeroSection() {
       aria-label="Hero"
       className="relative overflow-hidden bg-dark pb-0 pt-20 text-white md:pt-[80px]"
     >
-      <Image
-        src="/images/hero-particles.png"
-        alt=""
-        fill
-        priority
-        className="pointer-events-none object-cover opacity-45"
-        aria-hidden
-      />
+      <HeroParticles />
 
       <div
         className="pointer-events-none absolute -left-[93px] -top-[181px] size-[752px] rounded-full opacity-[0.22]"
