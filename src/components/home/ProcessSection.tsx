@@ -2,7 +2,6 @@ import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { GradientText } from "@/components/ui/GradientText";
 import { processSteps } from "@/data/home";
-import { cn } from "@/lib/cn";
 
 export function ProcessSection() {
   return (
@@ -18,10 +17,11 @@ export function ProcessSection() {
           </h2>
         </div>
 
-        <div className="relative pt-8 md:pt-10">
+        <div className="relative isolate pt-8 md:pt-10">
+          {/* Connector line — behind cards only, links step circles */}
           <div
-            className="pointer-events-none absolute left-7 right-7 z-0 hidden h-0.5 lg:block"
-            style={{ top: "56px" }}
+            className="pointer-events-none absolute left-7 right-7 z-0 hidden h-[2px] lg:block"
+            style={{ top: "57px" }}
             aria-hidden
           >
             <div className="absolute inset-0 bg-orange/[0.12]" />
@@ -29,19 +29,12 @@ export function ProcessSection() {
           </div>
 
           <div className="relative z-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-[3px]">
-            {processSteps.map((step, index) => (
+            {processSteps.map((step) => (
               <article
                 key={step.step}
-                className="relative rounded-2xl border border-orange/[0.08] bg-white px-[25px] py-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-peach-soft/30 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]"
+                className="relative rounded-2xl border border-orange/[0.08] bg-white px-[25px] py-[33px] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(232,69,26,0.08)]"
               >
-                <div
-                  className={cn(
-                    "relative z-10 flex size-12 items-center justify-center rounded-[24px] font-display text-[13.6px] font-extrabold leading-[20.4px]",
-                    index === 0
-                      ? "bg-gradient-to-br from-orange to-orange-light text-white"
-                      : "bg-gradient-to-br from-peach-soft to-[#fdd5c8] text-orange",
-                  )}
-                >
+                <div className="relative z-20 flex size-12 items-center justify-center rounded-[24px] bg-gradient-to-br from-peach-soft to-[#fdd5c8] font-display text-[13.6px] font-extrabold leading-[20.4px] text-orange ring-[6px] ring-white">
                   {step.step}
                 </div>
                 <h3 className="mt-5 font-display text-[14.4px] font-bold leading-[21.6px] tracking-[-0.144px] text-text-dark">
