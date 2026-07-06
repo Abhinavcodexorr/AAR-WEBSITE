@@ -44,7 +44,7 @@ export const contactForm = {
     companyName: { label: "Company Name *", placeholder: "Your organization" },
     designation: { label: "Designation", placeholder: "Your role" },
     businessEmail: { label: "Business Email *", placeholder: "you@company.com" },
-    phoneNumber: { label: "Phone", placeholder: "00000 00000" },
+    phoneNumber: { label: "Phone *", placeholder: "00000 00000" },
     industry: { label: "Industry", placeholder: "Select industry" },
     researchRequirement: {
       label: "Research Requirement",

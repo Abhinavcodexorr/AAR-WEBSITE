@@ -94,6 +94,10 @@ export function validateContactForm(values: ContactFormValues): ContactFormError
   return errors;
 }
 
+export function isContactFormValid(values: ContactFormValues): boolean {
+  return Object.keys(validateContactForm(values)).length === 0;
+}
+
 export const initialContactFormValues: ContactFormValues = {
   fullName: "",
   companyName: "",

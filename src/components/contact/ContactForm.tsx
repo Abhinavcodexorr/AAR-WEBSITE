@@ -10,12 +10,14 @@ import { CountryCodeSelect } from "@/components/contact/CountryCodeSelect";
 import {
   getPhoneMaxLength,
   initialContactFormValues,
+  isContactFormValid,
   sanitizeNameInput,
   sanitizePhoneInput,
   validateContactForm,
   type ContactFormErrors,
   type ContactFormValues,
 } from "@/lib/contactFormValidation";
+import { cn } from "@/lib/cn";
 
 const inputClassName =
   "w-full rounded-[10px] border border-gray-200 bg-white px-[17.5px] font-body text-[15.2px] leading-[17px] text-text-dark placeholder:text-gray-400 outline-none transition-colors focus:border-orange/40 focus:ring-2 focus:ring-orange/10";
@@ -85,6 +87,7 @@ export function ContactForm() {
   }
 
   const phoneMaxLength = getPhoneMaxLength(values.countryCode, values.phoneNumber);
+  const canSubmit = isContactFormValid(values);
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -278,7 +281,12 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="mt-8 flex h-[53.6px] w-full items-center justify-center gap-2 rounded-[10px] bg-gradient-to-br from-orange to-orange-light px-6 font-display text-[15.2px] font-bold leading-[22px] tracking-[-0.152px] text-white shadow-[0_8px_16px_rgba(232,69,26,0.35)] transition-opacity hover:opacity-95"
+        disabled={!canSubmit}
+        aria-disabled={!canSubmit}
+        className={cn(
+          "mt-8 flex h-[53.6px] w-full items-center justify-center gap-2 rounded-[10px] bg-gradient-to-br from-orange to-orange-light px-6 font-display text-[15.2px] font-bold leading-[22px] tracking-[-0.152px] text-white shadow-[0_8px_16px_rgba(232,69,26,0.35)] transition-opacity",
+          canSubmit ? "hover:opacity-95" : "cursor-not-allowed opacity-50",
+        )}
       >
         <CalendarIcon />
         {contactForm.submitLabel}
