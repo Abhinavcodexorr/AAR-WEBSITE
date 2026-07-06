@@ -146,7 +146,7 @@ export const capabilities: CapabilityTab[] = [
     label: "Go-To-Market Strategy",
     tag: "Go-To-Market Strategy",
     icon: "/images/capabilities/icon-go-to-market.svg",
-    image: "/images/capabilities/industry-research.png",
+    image: "/images/capabilities/go-to-market.png",
     imageAlt: "Go-to-market strategy analytics on laptop",
     title: "Launch with confidence, not guesswork",
     description:

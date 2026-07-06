@@ -1,16 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { GradientText } from "@/components/ui/GradientText";
 import { capabilities } from "@/data/home";
+import { useInViewOnce } from "@/hooks/useCountUp";
 import { cn } from "@/lib/cn";
+
+const CAPABILITY_IMAGE_SIZES = "(max-width: 1024px) 100vw, 522px";
 
 export function CoreCapabilitiesSection() {
   const [activeTab, setActiveTab] = useState(0);
+  const [preloadImages, setPreloadImages] = useState(false);
+  const { ref: sectionRef, isVisible } = useInViewOnce(0.15);
   const active = capabilities[activeTab];
+
+  useEffect(() => {
+    if (isVisible) {
+      setPreloadImages(true);
+    }
+  }, [isVisible]);
+
+  const shouldRenderImage = (index: number) =>
+    preloadImages || index === 0 || index === activeTab;
 
   return (
     <section
@@ -51,7 +65,12 @@ export function CoreCapabilitiesSection() {
               id={`tab-${cap.id}`}
               aria-selected={activeTab === index}
               aria-controls={`panel-${cap.id}`}
-              onClick={() => setActiveTab(index)}
+              onClick={() => {
+                setPreloadImages(true);
+                setActiveTab(index);
+              }}
+              onMouseEnter={() => setPreloadImages(true)}
+              onFocus={() => setPreloadImages(true)}
               className={cn(
                 "relative shrink-0 px-4 py-3 font-display text-[13.6px] tracking-[-0.136px] transition-colors",
                 activeTab === index
@@ -123,15 +142,35 @@ export function CoreCapabilitiesSection() {
             </Link>
           </div>
 
-          <div className="relative lg:pt-[41px]">
-            <div className="overflow-hidden rounded-[20px] bg-[#fff8f6] shadow-[0_24px_64px_rgba(232,69,26,0.12)]">
-              <Image
-                src={active.image}
-                alt={active.imageAlt}
-                width={522}
-                height={373}
-                className="h-auto w-full object-cover"
-              />
+          <div ref={sectionRef} className="relative lg:pt-[41px]">
+            <div className="relative aspect-[522/373] overflow-hidden rounded-[20px] bg-[#fff8f6] shadow-[0_24px_64px_rgba(232,69,26,0.12)]">
+              {capabilities.map((cap, index) => {
+                if (!shouldRenderImage(index)) {
+                  return null;
+                }
+
+                const isActive = activeTab === index;
+
+                return (
+                  <Image
+                    key={cap.id}
+                    src={cap.image}
+                    alt={isActive ? cap.imageAlt : ""}
+                    width={522}
+                    height={373}
+                    sizes={CAPABILITY_IMAGE_SIZES}
+                    quality={80}
+                    priority={index === 0}
+                    aria-hidden={!isActive}
+                    className={cn(
+                      "h-full w-full object-cover transition-opacity duration-150",
+                      isActive
+                        ? "relative z-10 opacity-100"
+                        : "absolute inset-0 z-0 opacity-0",
+                    )}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
