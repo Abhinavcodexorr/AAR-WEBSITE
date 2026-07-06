@@ -15,8 +15,12 @@ export function InsightsSection() {
               Trending Insights
             </Badge>
             <h2 className="font-display text-[clamp(1.75rem,4vw,2.195rem)] font-extrabold leading-[1.1] tracking-[-1.0539px] text-text-dark">
-              Research perspectives for{" "}
-              <GradientText>forward-thinking leaders</GradientText>
+              <span className="block lg:whitespace-nowrap">
+                Research perspectives for
+              </span>
+              <span className="block lg:whitespace-nowrap">
+                <GradientText>forward-thinking leaders</GradientText>
+              </span>
             </h2>
           </div>
           <Link

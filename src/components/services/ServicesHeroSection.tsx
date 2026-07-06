@@ -36,11 +36,10 @@ export function ServicesHeroSection() {
         </Badge>
 
         <h1 className="max-w-[700px] font-display text-[clamp(2.25rem,5.5vw,58.55px)] font-extrabold leading-[1.08] tracking-[-0.03em]">
-          <span className="block text-white">
-            {servicesHero.headline.line1}{" "}
-            {servicesHero.headline.line2Prefix}
+          <span className="block text-white lg:whitespace-nowrap">
+            {servicesHero.headline.line1}
           </span>
-          <span className="block">
+          <span className="block lg:whitespace-nowrap">
             <GradientText>{servicesHero.headline.line2Gradient}</GradientText>
           </span>
         </h1>

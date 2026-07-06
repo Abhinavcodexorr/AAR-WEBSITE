@@ -36,8 +36,10 @@ export function InsightsHeroSection() {
         </Badge>
 
         <h1 className="max-w-[700px] font-display text-[clamp(2.25rem,5.5vw,3.66rem)] font-extrabold leading-[1.08] tracking-[-0.03em]">
-          <span className="text-white">{insightsPageHero.headline.line1}</span>
-          <span className="mt-1 block">
+          <span className="block text-white lg:whitespace-nowrap">
+            {insightsPageHero.headline.line1}
+          </span>
+          <span className="block lg:whitespace-nowrap">
             <GradientText>{insightsPageHero.headline.gradient}</GradientText>
           </span>
         </h1>

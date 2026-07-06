@@ -10,8 +10,7 @@ export type ServiceItem = {
 export const servicesHero = {
   badge: "Our Services",
   headline: {
-    line1: "Research solutions built",
-    line2Prefix: "around",
+    line1: "Research solutions built around",
     line2Gradient: "your business",
   },
   subtext:
