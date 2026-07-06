@@ -36,9 +36,11 @@ export function ServicesHeroSection() {
         </Badge>
 
         <h1 className="max-w-[700px] font-display text-[clamp(2.25rem,5.5vw,58.55px)] font-extrabold leading-[63.234px] tracking-[-1.7565px]">
-          <span className="block text-white">{servicesHero.headline.line1}</span>
           <span className="block text-white">
-            {servicesHero.headline.line2Prefix}{" "}
+            {servicesHero.headline.line1}{" "}
+            {servicesHero.headline.line2Prefix}
+          </span>
+          <span className="block">
             <GradientText>{servicesHero.headline.line2Gradient}</GradientText>
           </span>
         </h1>

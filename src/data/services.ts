@@ -15,7 +15,7 @@ export const servicesHero = {
     line2Gradient: "your business",
   },
   subtext:
-    "Six core capabilities spanning the full spectrum of market intelligence — every engagement customized to your specific challenge.",
+    "Six core capabilities spanning the full spectrum of strategic research and intelligence — customized to address your most critical business questions.",
 };
 
 export const services: ServiceItem[] = [
