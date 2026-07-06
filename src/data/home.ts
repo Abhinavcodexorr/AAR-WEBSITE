@@ -452,6 +452,7 @@ export const insights = [
     title: "Digital Health Market Trends: Key Insights for 2026",
     readTime: "7 min read",
     date: "May 2026",
+    href: "/insights",
   },
   {
     image: "/images/insight-2.png",
@@ -459,6 +460,7 @@ export const insights = [
     title: "SaaS Competitive Positioning: Winning in Crowded Markets",
     readTime: "6 min read",
     date: "May 2026",
+    href: "/insights#competitive-intelligence",
   },
   {
     image: "/images/insight-3.png",
@@ -466,6 +468,7 @@ export const insights = [
     title: "Customer Experience in Banking: Research-Backed Strategies",
     readTime: "5 min read",
     date: "Apr 2026",
+    href: "/insights#customer-intelligence",
   },
   {
     image: "/images/insight-4.png",
@@ -473,6 +476,7 @@ export const insights = [
     title: "Supply Chain Intelligence: Navigating Market Disruption",
     readTime: "8 min read",
     date: "Apr 2026",
+    href: "/insights#strategic-intelligence",
   },
 ];
 

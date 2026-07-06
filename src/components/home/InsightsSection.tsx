@@ -76,12 +76,12 @@ export function InsightsSection() {
                     </svg>
                   </span>
                 </div>
-                <button
-                  type="button"
-                  className="mt-4 w-full rounded-lg border border-orange/[0.15] bg-peach-soft py-[9.4px] font-display text-[12.8px] font-bold leading-[19.2px] tracking-[-0.128px] text-orange transition-colors hover:border-orange/30"
+                <Link
+                  href={article.href}
+                  className="mt-4 block w-full rounded-lg border border-orange/[0.15] bg-peach-soft py-[9.4px] text-center font-display text-[12.8px] font-bold leading-[19.2px] tracking-[-0.128px] text-orange transition-colors hover:border-orange/30"
                 >
                   Read Full Article
-                </button>
+                </Link>
               </div>
             </article>
           ))}

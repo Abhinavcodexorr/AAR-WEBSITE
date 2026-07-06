@@ -49,7 +49,7 @@ export function FeaturedInsightCard({ article }: FeaturedInsightCardProps) {
         </div>
 
         <a
-          href={`#${article.id}`}
+          href="#insights-articles"
           className="mt-[19px] inline-flex w-fit items-center gap-2 font-display text-[15.2px] font-bold leading-[21px] text-orange transition-colors hover:text-orange-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
         >
           Read Article

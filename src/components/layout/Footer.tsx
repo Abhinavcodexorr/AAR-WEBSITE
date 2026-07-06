@@ -12,50 +12,56 @@ const footerIcons = {
   facebook: "/images/footer/facebook.svg",
 } as const;
 
-export function Footer() {
+type FooterProps = {
+  showCtaBanner?: boolean;
+};
+
+export function Footer({ showCtaBanner = true }: FooterProps) {
   return (
     <footer className="bg-dark text-white/40" aria-label="Site footer">
-      <div
-        className="relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(171.45deg, #c73b15 0%, #e8451a 50%, #f05a35 100%)",
-        }}
-      >
+      {showCtaBanner && (
         <div
-          className="pointer-events-none absolute inset-0"
+          className="relative overflow-hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgba(255,255,255,0.03) 0.57%, rgba(0,0,0,0) 0.57%), linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 0%)",
+              "linear-gradient(171.45deg, #c73b15 0%, #e8451a 50%, #f05a35 100%)",
           }}
-          aria-hidden
-        />
-        <Container className="relative flex min-h-[176px] flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center md:py-12">
-          <div className="max-w-[523px]">
-            <h3 className="font-display text-[25.6px] font-extrabold leading-[38.4px] tracking-[-0.512px] text-white">
-              {footer.ctaBanner.title}
-            </h3>
-            <p className="mt-1 text-[14.4px] leading-[21.6px] text-white/75">
-              {footer.ctaBanner.description}
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-white px-7 py-[13.6px] font-display text-[14.4px] font-bold leading-[21.6px] text-orange shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-opacity hover:opacity-95"
-          >
-            {footer.ctaBanner.button}
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden>
-              <path
-                d="M3 7.5h9M8.5 4l3.5 3.5L8.5 11"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
-        </Container>
-      </div>
+        >
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.03) 0.57%, rgba(0,0,0,0) 0.57%), linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 0%)",
+            }}
+            aria-hidden
+          />
+          <Container className="relative flex min-h-[176px] flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center md:py-12">
+            <div className="max-w-[523px]">
+              <h3 className="font-display text-[25.6px] font-extrabold leading-[38.4px] tracking-[-0.512px] text-white">
+                {footer.ctaBanner.title}
+              </h3>
+              <p className="mt-1 text-[14.4px] leading-[21.6px] text-white/75">
+                {footer.ctaBanner.description}
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-white px-7 py-[13.6px] font-display text-[14.4px] font-bold leading-[21.6px] text-orange shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-opacity hover:opacity-95"
+            >
+              {footer.ctaBanner.button}
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden>
+                <path
+                  d="M3 7.5h9M8.5 4l3.5 3.5L8.5 11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </Container>
+        </div>
+      )}
 
       <Container className="pb-10 pt-12">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[minmax(0,357px)_minmax(0,178px)_minmax(0,178px)_minmax(0,250px)] lg:gap-x-12">
@@ -107,7 +113,7 @@ export function Footer() {
 
           <FooterColumn title="Industries" linkStyle="regular">
             {footer.footerIndustries.map((item) => (
-              <FooterLink key={item} href="#industries">
+              <FooterLink key={item} href={getFooterIndustryHref(item)}>
                 {item}
               </FooterLink>
             ))}
@@ -115,7 +121,7 @@ export function Footer() {
 
           <FooterColumn title="Services" linkStyle="semibold">
             {footer.services.map((item) => (
-              <FooterLink key={item} href="#services">
+              <FooterLink key={item} href={getFooterServiceHref(item)}>
                 {item}
               </FooterLink>
             ))}
@@ -176,6 +182,36 @@ function ContactItem({
       <span className="text-[13.28px] leading-[19.92px] text-white/40">{label}</span>
     </li>
   );
+}
+
+function getFooterIndustryHref(label: string) {
+  const routes: Record<string, string> = {
+    Technology: "/industries#technology-saas",
+    Healthcare: "/industries#healthcare-life-sciences",
+    Manufacturing: "/industries#manufacturing-industrial",
+    BFSI: "/industries#banking-financial-services",
+    Retail: "/industries#consumer-retail",
+    Automotive: "/industries#automotive",
+    Education: "/industries#education",
+    Energy: "/industries#energy-utilities",
+    Logistics: "/industries#logistics-supply-chain",
+    Telecom: "/industries#telecom-media",
+  };
+
+  return routes[label] ?? "/industries";
+}
+
+function getFooterServiceHref(label: string) {
+  const routes: Record<string, string> = {
+    "Market Research": "/services#market-research",
+    "Competitive Intelligence": "/services#competitive-intelligence",
+    "Customer Insights": "/services#customer-insights",
+    "Industry Research": "/services#industry-research",
+    "Go-To-Market Strategy": "/services#go-to-market",
+    "Business Intelligence & Analytics": "/services#business-intelligence",
+  };
+
+  return routes[label] ?? "/services";
 }
 
 function getFooterLinkHref(label: string) {

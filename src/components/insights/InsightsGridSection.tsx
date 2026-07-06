@@ -4,7 +4,7 @@ import { InsightCard } from "./InsightCard";
 
 export function InsightsGridSection() {
   return (
-    <section aria-label="Insight articles" className="bg-white pb-16 pt-8 md:pb-20">
+    <section id="insights-articles" aria-label="Insight articles" className="bg-white pb-16 pt-8 md:pb-20">
       <Container>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {insightArticles.map((article) => (

@@ -18,7 +18,7 @@ export default function ContactPage() {
         <ContactHeroSection />
         <ContactMainSection />
       </main>
-      <Footer />
+      <Footer showCtaBanner={false} />
     </>
   );
 }
