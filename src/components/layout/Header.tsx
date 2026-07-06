@@ -135,6 +135,21 @@ export function Header({ pathname = "/" }: HeaderProps) {
                   </Link>
                 </li>
               ))}
+              <li className="mt-3 border-t border-gray-100 pt-3 md:hidden">
+                <Link
+                  href="/contact"
+                  tabIndex={mobileOpen ? 0 : -1}
+                  className={cn(
+                    "block rounded-lg px-3 py-2.5 font-display text-[15px]",
+                    pathname === "/contact"
+                      ? "bg-peach-soft font-semibold text-orange"
+                      : "font-semibold text-orange",
+                  )}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
