@@ -124,12 +124,6 @@ export function HeroSection() {
           ))}
         </div>
       </div>
-
-      <div className="relative z-10 flex justify-center py-6" aria-hidden>
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 p-1.5">
-          <div className="size-1 animate-bounce rounded-full bg-orange" />
-        </div>
-      </div>
     </section>
   );
 }
