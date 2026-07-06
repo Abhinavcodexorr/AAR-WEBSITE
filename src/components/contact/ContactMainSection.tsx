@@ -73,7 +73,7 @@ function ContactInfoItem({
         {icon}
       </span>
       <div>
-        <p className="font-body text-[15.2px] font-medium leading-[18px] text-gray-400">
+        <p className="font-body text-[12.8px] font-normal uppercase leading-[15px] text-gray-600">
           {label}
         </p>
         {href ? (

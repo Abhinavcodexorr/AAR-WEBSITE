@@ -1,21 +1,90 @@
 "use client";
 
+import { useState } from "react";
 import {
   contactForm,
+  countryCodes,
   industryOptions,
   researchRequirementOptions,
 } from "@/data/contact";
+import {
+  getPhoneMaxLength,
+  initialContactFormValues,
+  sanitizeNameInput,
+  sanitizePhoneInput,
+  validateContactForm,
+  type ContactFormErrors,
+  type ContactFormValues,
+} from "@/lib/contactFormValidation";
 
 const inputClassName =
   "w-full rounded-[10px] border border-gray-200 bg-white px-[17.5px] font-body text-[15.2px] leading-[17px] text-text-dark placeholder:text-gray-400 outline-none transition-colors focus:border-orange/40 focus:ring-2 focus:ring-orange/10";
 
 const labelClassName =
-  "mb-[6px] block font-body text-[15.2px] font-medium leading-[19px] text-text-dark";
+  "mb-[6px] block font-body text-[12.8px] font-normal uppercase leading-[15px] text-gray-600";
+
+const errorInputClassName = "border-red-400 focus:border-red-400 focus:ring-red-100";
 
 export function ContactForm() {
+  const [values, setValues] = useState<ContactFormValues>(initialContactFormValues);
+  const [errors, setErrors] = useState<ContactFormErrors>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  function updateField<K extends keyof ContactFormValues>(
+    field: K,
+    value: ContactFormValues[K],
+  ) {
+    setValues((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+  }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const validationErrors = validateContactForm(values);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setSubmitted(false);
+      return;
+    }
+
+    setErrors({});
+    setSubmitted(true);
   }
+
+  if (submitted) {
+    return (
+      <div className="py-8 text-center">
+        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-peach-soft text-orange">
+          <CheckIcon />
+        </div>
+        <h2 className="mt-6 font-display text-[28px] font-extrabold leading-8 tracking-[-0.02em] text-text-dark">
+          Thank You
+        </h2>
+        <p className="mx-auto mt-3 max-w-md text-[15.2px] leading-[24px] text-gray-500">
+          {contactForm.successMessage}
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            setSubmitted(false);
+            setValues(initialContactFormValues);
+          }}
+          className="mt-8 font-display text-[14px] font-semibold text-orange transition-colors hover:text-orange-light"
+        >
+          Submit another enquiry
+        </button>
+      </div>
+    );
+  }
+
+  const phoneMaxLength = getPhoneMaxLength(values.countryCode, values.phoneNumber);
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -27,95 +96,152 @@ export function ContactForm() {
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-4">
-        <div>
-          <label htmlFor="full-name" className={labelClassName}>
-            {contactForm.fields.fullName.label}
-          </label>
+        <Field
+          id="full-name"
+          label={contactForm.fields.fullName.label}
+          error={errors.fullName}
+        >
           <input
             id="full-name"
             name="fullName"
             type="text"
-            required
             autoComplete="name"
+            value={values.fullName}
             placeholder={contactForm.fields.fullName.placeholder}
-            className={`${inputClassName} h-[51px]`}
+            aria-invalid={!!errors.fullName}
+            aria-describedby={errors.fullName ? "full-name-error" : undefined}
+            onChange={(event) =>
+              updateField("fullName", sanitizeNameInput(event.target.value))
+            }
+            className={`${inputClassName} h-[51px] ${errors.fullName ? errorInputClassName : ""}`}
           />
-        </div>
-        <div>
-          <label htmlFor="company-name" className={labelClassName}>
-            {contactForm.fields.companyName.label}
-          </label>
+        </Field>
+
+        <Field
+          id="company-name"
+          label={contactForm.fields.companyName.label}
+          error={errors.companyName}
+        >
           <input
             id="company-name"
             name="companyName"
             type="text"
-            required
             autoComplete="organization"
+            value={values.companyName}
             placeholder={contactForm.fields.companyName.placeholder}
-            className={`${inputClassName} h-[51px]`}
+            aria-invalid={!!errors.companyName}
+            aria-describedby={errors.companyName ? "company-name-error" : undefined}
+            onChange={(event) => updateField("companyName", event.target.value)}
+            className={`${inputClassName} h-[51px] ${errors.companyName ? errorInputClassName : ""}`}
           />
-        </div>
+        </Field>
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-4">
-        <div>
-          <label htmlFor="designation" className={labelClassName}>
-            {contactForm.fields.designation.label}
-          </label>
+        <Field id="designation" label={contactForm.fields.designation.label}>
           <input
             id="designation"
             name="designation"
             type="text"
             autoComplete="organization-title"
+            value={values.designation}
             placeholder={contactForm.fields.designation.placeholder}
+            onChange={(event) => updateField("designation", event.target.value)}
             className={`${inputClassName} h-[51px]`}
           />
-        </div>
-        <div>
-          <label htmlFor="business-email" className={labelClassName}>
-            {contactForm.fields.businessEmail.label}
-          </label>
+        </Field>
+
+        <Field
+          id="business-email"
+          label={contactForm.fields.businessEmail.label}
+          error={errors.businessEmail}
+        >
           <input
             id="business-email"
             name="businessEmail"
             type="email"
-            required
             autoComplete="email"
+            value={values.businessEmail}
             placeholder={contactForm.fields.businessEmail.placeholder}
-            className={`${inputClassName} h-[51px]`}
+            aria-invalid={!!errors.businessEmail}
+            aria-describedby={errors.businessEmail ? "business-email-error" : undefined}
+            onChange={(event) => updateField("businessEmail", event.target.value)}
+            className={`${inputClassName} h-[51px] ${errors.businessEmail ? errorInputClassName : ""}`}
+          />
+        </Field>
+      </div>
+
+      <Field
+        id="phone-number"
+        className="mt-4"
+        label={contactForm.fields.phoneNumber.label}
+        error={errors.phoneNumber}
+        hint={
+          values.countryCode === "+91"
+            ? values.phoneNumber.startsWith("0")
+              ? "Enter 11 digits (including leading 0)"
+              : "Enter 10-digit mobile number"
+            : undefined
+        }
+      >
+        <div className="flex gap-2">
+          <div className="relative shrink-0">
+            <select
+              id="country-code"
+              name="countryCode"
+              value={values.countryCode}
+              aria-label="Country code"
+              onChange={(event) => {
+                const countryCode = event.target.value;
+                updateField("countryCode", countryCode);
+                updateField(
+                  "phoneNumber",
+                  sanitizePhoneInput(values.phoneNumber, countryCode),
+                );
+              }}
+              className={`${inputClassName} h-[51px] w-[110px] appearance-none pr-8 sm:w-[120px]`}
+            >
+              {countryCodes.map(({ code, country }) => (
+                <option key={code} value={code}>
+                  {code} {country}
+                </option>
+              ))}
+            </select>
+            <ChevronIcon className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" />
+          </div>
+          <input
+            id="phone-number"
+            name="phoneNumber"
+            type="tel"
+            inputMode="numeric"
+            autoComplete="tel-national"
+            value={values.phoneNumber}
+            maxLength={phoneMaxLength}
+            placeholder={contactForm.fields.phoneNumber.placeholder}
+            aria-invalid={!!errors.phoneNumber}
+            aria-describedby={errors.phoneNumber ? "phone-number-error" : undefined}
+            onChange={(event) =>
+              updateField(
+                "phoneNumber",
+                sanitizePhoneInput(event.target.value, values.countryCode),
+              )
+            }
+            className={`${inputClassName} h-[51px] flex-1 ${errors.phoneNumber ? errorInputClassName : ""}`}
           />
         </div>
-      </div>
-
-      <div className="mt-4">
-        <label htmlFor="phone-number" className={labelClassName}>
-          {contactForm.fields.phoneNumber.label}
-        </label>
-        <input
-          id="phone-number"
-          name="phoneNumber"
-          type="tel"
-          autoComplete="tel"
-          placeholder={contactForm.fields.phoneNumber.placeholder}
-          className={`${inputClassName} h-[51px]`}
-        />
-      </div>
+      </Field>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-4">
-        <div>
-          <label htmlFor="industry" className={labelClassName}>
-            {contactForm.fields.industry.label}
-          </label>
+        <Field id="industry" label={contactForm.fields.industry.label}>
           <div className="relative">
             <select
               id="industry"
               name="industry"
-              defaultValue=""
+              value={values.industry}
+              onChange={(event) => updateField("industry", event.target.value)}
               className={`${inputClassName} h-[49px] appearance-none pr-10`}
             >
-              <option value="" disabled>
-                {contactForm.fields.industry.placeholder}
-              </option>
+              <option value="">{contactForm.fields.industry.placeholder}</option>
               {industryOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -124,19 +250,23 @@ export function ContactForm() {
             </select>
             <ChevronIcon className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
           </div>
-        </div>
-        <div>
-          <label htmlFor="research-requirement" className={labelClassName}>
-            {contactForm.fields.researchRequirement.label}
-          </label>
+        </Field>
+
+        <Field
+          id="research-requirement"
+          label={contactForm.fields.researchRequirement.label}
+        >
           <div className="relative">
             <select
               id="research-requirement"
               name="researchRequirement"
-              defaultValue=""
+              value={values.researchRequirement}
+              onChange={(event) =>
+                updateField("researchRequirement", event.target.value)
+              }
               className={`${inputClassName} h-[49px] appearance-none pr-10`}
             >
-              <option value="" disabled>
+              <option value="">
                 {contactForm.fields.researchRequirement.placeholder}
               </option>
               {researchRequirementOptions.map((option) => (
@@ -147,21 +277,20 @@ export function ContactForm() {
             </select>
             <ChevronIcon className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
           </div>
-        </div>
+        </Field>
       </div>
 
-      <div className="mt-4">
-        <label htmlFor="message" className={labelClassName}>
-          {contactForm.fields.message.label}
-        </label>
+      <Field id="message" className="mt-4" label={contactForm.fields.message.label}>
         <textarea
           id="message"
           name="message"
           rows={5}
+          value={values.message}
           placeholder={contactForm.fields.message.placeholder}
+          onChange={(event) => updateField("message", event.target.value)}
           className={`${inputClassName} min-h-[135px] resize-y py-[15px]`}
         />
-      </div>
+      </Field>
 
       <button
         type="submit"
@@ -171,6 +300,43 @@ export function ContactForm() {
         {contactForm.submitLabel}
       </button>
     </form>
+  );
+}
+
+function Field({
+  id,
+  label,
+  error,
+  hint,
+  className,
+  children,
+}: {
+  id: string;
+  label: string;
+  error?: string;
+  hint?: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={className}>
+      <label htmlFor={id} className={labelClassName}>
+        {label}
+      </label>
+      {children}
+      {hint && !error && (
+        <p className="mt-1 text-[12px] leading-[16px] text-gray-400">{hint}</p>
+      )}
+      {error && (
+        <p
+          id={`${id}-error`}
+          role="alert"
+          className="mt-1 text-[12px] leading-[16px] text-red-500"
+        >
+          {error}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -207,7 +373,26 @@ function CalendarIcon() {
         stroke="currentColor"
         strokeWidth="1.2"
       />
-      <path d="M1.5 6h12M5 1v3M10 1v3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M1.5 6h12M5 1v3M10 1v3"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M5 12.5l5 5L19 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

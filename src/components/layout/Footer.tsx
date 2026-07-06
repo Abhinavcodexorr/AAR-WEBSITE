@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { SiteLogo } from "@/components/ui/SiteLogo";
 import { footer } from "@/data/home";
+import { contactInfo } from "@/data/contact";
 
 const footerIcons = {
   email: "/images/footer/email.svg",
@@ -66,29 +67,29 @@ export function Footer({ showCtaBanner = true }: FooterProps) {
       <Container className="pb-10 pt-12">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[minmax(0,357px)_minmax(0,178px)_minmax(0,178px)_minmax(0,250px)] lg:gap-x-12">
           <div>
-            <Image
-              src="/images/footer/logo.png"
-              alt="AAR Insights & Research"
-              width={72}
-              height={48}
-              className="h-12 w-[72px] rounded-[6px] object-cover"
-            />
-            <p className="mt-5 max-w-[300px] text-[13.6px] leading-[25.16px] text-white/40">
+            <SiteLogo variant="footer" />
+            <p className="mt-5 max-w-[300px] text-[13.6px] uppercase leading-[25.16px] tracking-[0.04em] text-white/40">
               {footer.description}
             </p>
 
             <ul className="mt-8 flex flex-col gap-3">
               <ContactItem
-                href={`mailto:${footer.email}`}
+                href={contactInfo.email.href}
                 icon={footerIcons.email}
-                label={footer.email}
+                title={contactInfo.email.label}
+                label={contactInfo.email.value}
               />
               <ContactItem
-                href={`tel:${footer.phone.replace(/\s/g, "")}`}
+                href={contactInfo.phone.href}
                 icon={footerIcons.phone}
-                label={footer.phone}
+                title={contactInfo.phone.label}
+                label={contactInfo.phone.value}
               />
-              <ContactItem icon={footerIcons.location} label={footer.location} />
+              <ContactItem
+                icon={footerIcons.location}
+                title={contactInfo.location.label}
+                label={contactInfo.location.value}
+              />
             </ul>
 
             <div className="mt-7">
@@ -151,17 +152,24 @@ export function Footer({ showCtaBanner = true }: FooterProps) {
 function ContactItem({
   href,
   icon,
+  title,
   label,
 }: {
   href?: string;
   icon: string;
+  title: string;
   label: string;
 }) {
   const content = (
     <>
       <img src={icon} alt="" width={13} height={13} className="size-[13px] shrink-0" />
-      <span className="text-[13.28px] leading-[19.92px] text-white/40 transition-colors group-hover:text-white/60">
-        {label}
+      <span>
+        <span className="block font-display text-[11px] font-bold uppercase tracking-[0.66px] text-white/55">
+          {title}
+        </span>
+        <span className="mt-0.5 block text-[13.28px] leading-[19.92px] text-white/40 transition-colors group-hover:text-white/60">
+          {label}
+        </span>
       </span>
     </>
   );
@@ -169,7 +177,7 @@ function ContactItem({
   if (href) {
     return (
       <li>
-        <a href={href} className="group flex items-center gap-[9.6px]">
+        <a href={href} className="group flex items-start gap-[9.6px]">
           {content}
         </a>
       </li>
@@ -177,9 +185,8 @@ function ContactItem({
   }
 
   return (
-    <li className="flex items-center gap-[9.6px]">
-      <img src={icon} alt="" width={13} height={13} className="size-[13px] shrink-0" />
-      <span className="text-[13.28px] leading-[19.92px] text-white/40">{label}</span>
+    <li className="flex items-start gap-[9.6px]">
+      {content}
     </li>
   );
 }

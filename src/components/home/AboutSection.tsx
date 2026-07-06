@@ -48,14 +48,14 @@ export function AboutSection() {
             </Button>
           </div>
 
-          <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[650px] lg:w-[520px]">
-            <div className="relative h-full w-full overflow-hidden rounded-[20px] shadow-[0px_32px_80px_0px_rgba(232,69,26,0.15)]">
+          <div className="group relative h-[420px] w-full cursor-pointer sm:h-[520px] lg:h-[650px] lg:w-[520px]">
+            <div className="relative h-full w-full overflow-hidden rounded-[20px] shadow-[0px_32px_80px_0px_rgba(232,69,26,0.15)] transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-3 group-hover:scale-[1.02] group-hover:shadow-[0px_40px_96px_0px_rgba(232,69,26,0.22)]">
               <Image
                 src="/images/about/founder.png"
                 alt="AAR Insights founder and research team"
                 fill
                 sizes="(max-width: 1024px) 100vw, 520px"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-105"
                 priority
               />
               <div className="absolute bottom-[21px] left-[18px] right-[18px] rounded-[14px] bg-white/95 p-[25px] shadow-[0px_12px_41px_0px_rgba(0,0,0,0.15)]">

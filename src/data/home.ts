@@ -1,3 +1,5 @@
+import { contactInfo, siteTagline } from "./contact";
+
 export type NavLink = {
   label: string;
   href: string;
@@ -14,9 +16,9 @@ export const navLinks: NavLink[] = [
 ];
 
 export const topBar = {
-  tagline: "Strategic Market Research & Business Intelligence",
-  email: "pre-sales@aarinsightsresearch.com",
-  phone: "+91 96677 82298",
+  tagline: siteTagline,
+  email: contactInfo.email.value,
+  phone: contactInfo.phone.value,
 };
 
 export const hero = {
@@ -499,11 +501,8 @@ export const footer = {
       "Let's discuss how our research capabilities can support your growth.",
     button: "Schedule a Consultation",
   },
-  description:
-    "Strategic market research and business intelligence helping organizations make confident decisions through reliable insights and actionable intelligence.",
-  email: "presales@aarinsights.com",
-  phone: "+91 96677 82298",
-  location: "Noida, Uttar Pradesh, India",
+  description: siteTagline,
+  location: contactInfo.location.value,
   quickLinks: [
     "Home",
     "About Us",

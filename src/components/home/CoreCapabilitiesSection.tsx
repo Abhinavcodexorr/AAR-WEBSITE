@@ -126,7 +126,7 @@ export function CoreCapabilitiesSection() {
             </ul>
 
             <Link
-              href="/contact"
+              href="/services"
               className="mt-8 inline-flex items-center gap-1.5 font-display text-sm font-bold tracking-[-0.14px] text-orange transition-colors hover:text-orange-light"
             >
               Enquire about this service

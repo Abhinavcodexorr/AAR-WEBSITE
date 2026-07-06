@@ -1,3 +1,5 @@
+export const siteTagline = "Strategic Market Research & Business Intelligence";
+
 export const contactPageHero = {
   badge: "Contact Us",
   headline: {
@@ -35,12 +37,14 @@ export const contactForm = {
   description:
     "Fill in the form and our team will be in touch to discuss your research requirements and schedule a consultation.",
   submitLabel: "Schedule a Consultation",
+  successMessage:
+    "Thank you! Our team will respond within 24 business hours to discuss your research requirements.",
   fields: {
     fullName: { label: "Full Name *", placeholder: "Your full name" },
     companyName: { label: "Company Name *", placeholder: "Your organization" },
     designation: { label: "Designation", placeholder: "Your role" },
     businessEmail: { label: "Business Email *", placeholder: "you@company.com" },
-    phoneNumber: { label: "Phone Number", placeholder: "+91 00000 00000" },
+    phoneNumber: { label: "Phone", placeholder: "00000 00000" },
     industry: { label: "Industry", placeholder: "Select industry" },
     researchRequirement: {
       label: "Research Requirement",
@@ -53,6 +57,24 @@ export const contactForm = {
     },
   },
 };
+
+export const countryCodes = [
+  { code: "+91", country: "India" },
+  { code: "+1", country: "US / Canada" },
+  { code: "+44", country: "United Kingdom" },
+  { code: "+61", country: "Australia" },
+  { code: "+971", country: "UAE" },
+  { code: "+65", country: "Singapore" },
+  { code: "+49", country: "Germany" },
+  { code: "+33", country: "France" },
+  { code: "+81", country: "Japan" },
+  { code: "+86", country: "China" },
+  { code: "+82", country: "South Korea" },
+  { code: "+966", country: "Saudi Arabia" },
+  { code: "+974", country: "Qatar" },
+  { code: "+27", country: "South Africa" },
+  { code: "+55", country: "Brazil" },
+] as const;
 
 export const industryOptions = [
   "Technology & SaaS",

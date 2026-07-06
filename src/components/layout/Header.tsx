@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { SiteLogo } from "@/components/ui/SiteLogo";
 import { navLinks, topBar } from "@/data/home";
+import { contactInfo } from "@/data/contact";
 import { cn } from "@/lib/cn";
 
 type HeaderProps = {
@@ -22,21 +23,29 @@ export function Header({ pathname = "/" }: HeaderProps) {
     <header className="sticky top-0 z-50">
       <div className="bg-dark-deep text-white/70">
         <Container className="flex h-[38px] items-center justify-between text-[11px]">
-          <p className="hidden truncate sm:block">{topBar.tagline}</p>
+          <p className="hidden truncate uppercase tracking-[0.04em] sm:block">
+            {topBar.tagline}
+          </p>
           <div className="ml-auto flex items-center gap-4 sm:gap-8">
             <a
-              href={`mailto:${topBar.email}`}
+              href={contactInfo.email.href}
               className="flex items-center gap-1.5 transition-colors hover:text-white"
             >
               <MailIcon />
-              <span className="hidden md:inline">{topBar.email}</span>
+              <span className="hidden md:inline">
+                <span className="sr-only">{contactInfo.email.label}: </span>
+                {contactInfo.email.value}
+              </span>
             </a>
             <a
-              href={`tel:${topBar.phone.replace(/\s/g, "")}`}
+              href={contactInfo.phone.href}
               className="flex items-center gap-1.5 transition-colors hover:text-white"
             >
               <PhoneIcon />
-              <span>{topBar.phone}</span>
+              <span>
+                <span className="sr-only">{contactInfo.phone.label}: </span>
+                {contactInfo.phone.value}
+              </span>
             </a>
           </div>
         </Container>
@@ -45,14 +54,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
       <div className="border-b border-gray-100 bg-white shadow-sm">
         <Container className="flex h-[72px] items-center justify-between gap-4">
           <Link href="/" aria-label="AAR Insights home">
-            <Image
-              src="/images/logo.png"
-              alt="AAR Insights & Research"
-              width={69}
-              height={46}
-              priority
-              className="h-[46px] w-auto"
-            />
+            <SiteLogo variant="header" priority />
           </Link>
 
           <nav
@@ -78,7 +80,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 md:flex">
             <Button href="/contact" variant="ghost" size="sm">
               Contact
             </Button>
@@ -122,14 +124,6 @@ export function Header({ pathname = "/" }: HeaderProps) {
                   </Link>
                 </li>
               ))}
-              <li className="mt-3 flex flex-col gap-2 border-t border-gray-100 pt-3">
-                <Button href="/contact" variant="outline-dark" size="sm">
-                  Contact
-                </Button>
-                <Button href="/contact" size="sm">
-                  Request a Proposal
-                </Button>
-              </li>
             </ul>
           </nav>
         )}
