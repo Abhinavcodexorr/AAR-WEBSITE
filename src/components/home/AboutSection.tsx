@@ -97,7 +97,7 @@ export function AboutSection() {
           {about.differentiators.map((item) => (
             <article
               key={item.title}
-              className="rounded-[14px] border border-orange/[0.06] bg-white/50 p-[33px]"
+              className="rounded-[14px] border border-orange/[0.06] bg-white/50 p-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-white hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]"
             >
               <div className="flex gap-4">
                 <span className="mt-2 size-1.5 shrink-0 rounded-[3px] bg-gradient-to-br from-orange to-orange-light" />

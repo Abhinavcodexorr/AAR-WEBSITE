@@ -40,7 +40,7 @@ export function InsightsSection() {
           {insights.map((article) => (
             <article
               key={article.title}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-orange/[0.08] bg-white p-px"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-orange/[0.08] bg-white p-px transition-all duration-200 hover:border-orange/20 hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)]"
             >
               <div className="relative h-[175px] overflow-hidden bg-peach">
                 <Image

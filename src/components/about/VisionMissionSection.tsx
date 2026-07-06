@@ -28,7 +28,7 @@ function VisionMissionCard({
   description: string;
 }) {
   return (
-    <article className="rounded-[20px] border border-orange/10 bg-white p-8 md:p-[49px]">
+    <article className="rounded-[20px] border border-orange/10 bg-white p-8 transition-all duration-200 hover:border-orange/20 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)] md:p-[49px]">
       <div
         className="h-[3px] w-9 rounded-sm bg-gradient-to-r from-orange to-orange-light"
         aria-hidden

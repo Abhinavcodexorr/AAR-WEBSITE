@@ -15,7 +15,7 @@ function StatCard({
   const count = useCountUp(target, animate);
 
   return (
-    <article className="rounded-[14px] border border-white/[0.06] px-[25px] py-[33px] text-center">
+    <article className="rounded-[14px] border border-white/[0.06] px-[25px] py-[33px] text-center transition-all duration-200 hover:border-white/12 hover:bg-white/[0.04]">
       <div className="mx-auto mb-4 flex size-[42px] items-center justify-center rounded-[10px] bg-cyan/15">
         <img
           src={stat.icon}

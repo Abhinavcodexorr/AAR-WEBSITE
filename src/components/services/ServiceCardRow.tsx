@@ -78,7 +78,7 @@ export function ServiceCardRow({ service }: ServiceCardRowProps) {
     <article
       id={service.id}
       aria-labelledby={`${service.id}-title`}
-      className="grid lg:grid-cols-2"
+      className="grid overflow-hidden rounded-[20px] border border-orange/[0.08] transition-all duration-200 hover:border-orange/20 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)] lg:grid-cols-2"
     >
       <div className={cn(service.reversed && "lg:order-2")}>{description}</div>
       <div className={cn(service.reversed && "lg:order-1")}>{coverage}</div>

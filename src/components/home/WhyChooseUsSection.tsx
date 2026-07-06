@@ -39,7 +39,7 @@ export function WhyChooseUsSection() {
           {whyChooseUs.map((reason) => (
             <article
               key={reason.number}
-              className="rounded-[14px] border border-orange/[0.08] bg-peach-light p-[30.6px]"
+              className="rounded-[14px] border border-orange/[0.08] bg-peach-light p-[30.6px] transition-all duration-200 hover:border-orange/20 hover:bg-white hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]"
             >
               <div className="flex items-center gap-[9.6px]">
                 <span className="font-display text-2xl font-extrabold leading-6 text-orange/[0.22]">

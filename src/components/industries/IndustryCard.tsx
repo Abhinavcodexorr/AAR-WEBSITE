@@ -10,7 +10,7 @@ export function IndustryCard({ industry }: IndustryCardProps) {
     <article
       id={industry.id}
       aria-labelledby={`${industry.id}-title`}
-      className="overflow-hidden rounded-[14px] border border-orange/[0.08] bg-white p-px"
+      className="overflow-hidden rounded-[14px] border border-orange/[0.08] bg-white p-px transition-all duration-200 hover:border-orange/20 hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)]"
     >
       <div className="relative h-[160px] overflow-hidden bg-peach">
         <Image

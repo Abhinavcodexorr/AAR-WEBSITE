@@ -32,7 +32,7 @@ export function ProcessSection() {
             {processSteps.map((step, index) => (
               <article
                 key={step.step}
-                className="relative rounded-2xl border border-orange/[0.08] bg-white px-[25px] py-[33px]"
+                className="relative rounded-2xl border border-orange/[0.08] bg-white px-[25px] py-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-peach-soft/30 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]"
               >
                 <div
                   className={cn(

@@ -10,7 +10,7 @@ export function FeaturedInsightCard({ article }: FeaturedInsightCardProps) {
     <article
       id={article.id}
       aria-labelledby={`${article.id}-title`}
-      className="grid overflow-hidden rounded-[20px] border border-orange/10 bg-white lg:grid-cols-[625fr_480fr]"
+      className="grid overflow-hidden rounded-[20px] border border-orange/10 bg-white transition-all duration-200 hover:border-orange/20 hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)] lg:grid-cols-[625fr_480fr]"
     >
       <div className="relative -mb-px min-h-[280px] overflow-hidden bg-[#0f0d1e] sm:min-h-[360px] lg:mb-0 lg:min-h-[384px] lg:-mr-px lg:z-[1]">
         <Image

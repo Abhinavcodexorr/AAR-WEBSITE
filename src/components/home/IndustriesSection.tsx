@@ -56,7 +56,7 @@ export function IndustriesSection() {
             <Link
               key={industry.id}
               href="/industries"
-              className="group flex h-[74px] items-center justify-between rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-[21px] py-[16.2px] transition-colors hover:border-orange/30 hover:bg-white/[0.08]"
+              className="group flex h-[74px] cursor-pointer items-center justify-between rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-[21px] py-[16.2px] transition-all duration-200 hover:border-orange/30 hover:bg-white/[0.08]"
             >
               <div className="flex min-w-0 items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-orange/[0.12]">

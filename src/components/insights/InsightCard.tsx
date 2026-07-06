@@ -11,7 +11,7 @@ export function InsightCard({ article }: InsightCardProps) {
     <article id={article.id} aria-labelledby={`${article.id}-title`}>
       <Link
         href={`/insights#${article.id}`}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-orange/[0.08] bg-white p-px transition-shadow hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)]"
+        className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-orange/[0.08] bg-white p-px transition-all duration-200 hover:border-orange/20 hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)]"
       >
         <div className="relative h-[180px] overflow-hidden bg-peach">
           <Image

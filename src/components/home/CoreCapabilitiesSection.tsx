@@ -72,10 +72,10 @@ export function CoreCapabilitiesSection() {
               onMouseEnter={() => setPreloadImages(true)}
               onFocus={() => setPreloadImages(true)}
               className={cn(
-                "relative shrink-0 px-4 py-3 font-display text-[13.6px] tracking-[-0.136px] transition-colors",
+                "relative shrink-0 cursor-pointer rounded-lg px-4 py-3 font-display text-[13.6px] tracking-[-0.136px] transition-all duration-200",
                 activeTab === index
                   ? "font-bold text-orange after:absolute after:inset-x-4 after:-bottom-[2px] after:h-0.5 after:bg-orange"
-                  : "font-medium text-gray-400 hover:text-gray-500",
+                  : "font-medium text-gray-400 hover:bg-peach-soft/70 hover:text-orange-dark",
               )}
             >
               {cap.label}

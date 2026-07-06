@@ -39,7 +39,7 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
     <article
       id={study.id}
       aria-labelledby={`${study.id}-title`}
-      className="overflow-hidden rounded-[24px] border border-orange/[0.08] bg-white p-px"
+      className="overflow-hidden rounded-[24px] border border-orange/[0.08] bg-white p-px transition-all duration-200 hover:border-orange/20 hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)]"
     >
       <div className="grid lg:grid-cols-[591fr_514fr]">
         <div
