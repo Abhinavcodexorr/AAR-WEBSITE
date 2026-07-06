@@ -3,10 +3,10 @@
 import { useState } from "react";
 import {
   contactForm,
-  countryCodes,
   industryOptions,
   researchRequirementOptions,
 } from "@/data/contact";
+import { countryCodes } from "@/data/countryCodes";
 import {
   getPhoneMaxLength,
   initialContactFormValues,
@@ -185,7 +185,7 @@ export function ContactForm() {
         }
       >
         <div className="flex gap-2">
-          <div className="relative shrink-0">
+          <div className="relative min-w-0 shrink-0 sm:max-w-[44%]">
             <select
               id="country-code"
               name="countryCode"
@@ -199,10 +199,10 @@ export function ContactForm() {
                   sanitizePhoneInput(values.phoneNumber, countryCode),
                 );
               }}
-              className={`${inputClassName} h-[51px] w-[110px] appearance-none pr-8 sm:w-[120px]`}
+              className={`${inputClassName} h-[51px] w-full min-w-[148px] max-w-[200px] appearance-none pr-9 sm:min-w-[168px]`}
             >
               {countryCodes.map(({ code, country }) => (
-                <option key={code} value={code}>
+                <option key={`${code}-${country}`} value={code}>
                   {code} {country}
                 </option>
               ))}

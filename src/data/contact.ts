@@ -58,25 +58,6 @@ export const contactForm = {
   },
 };
 
-export const countryCodes = [
-  { code: "+91", country: "India" },
-  { code: "+1", country: "US / Canada" },
-  { code: "+44", country: "United Kingdom" },
-  { code: "+61", country: "Australia" },
-  { code: "+971", country: "UAE" },
-  { code: "+65", country: "Singapore" },
-  { code: "+49", country: "Germany" },
-  { code: "+33", country: "France" },
-  { code: "+81", country: "Japan" },
-  { code: "+86", country: "China" },
-  { code: "+82", country: "South Korea" },
-  { code: "+966", country: "Saudi Arabia" },
-  { code: "+974", country: "Qatar" },
-  { code: "+27", country: "South Africa" },
-  { code: "+55", country: "Brazil" },
-] as const;
-
-export const industryOptions = [
   "Technology & SaaS",
   "Healthcare & Life Sciences",
   "Manufacturing & Industrial",
