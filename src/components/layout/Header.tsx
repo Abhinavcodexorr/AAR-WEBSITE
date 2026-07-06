@@ -51,7 +51,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
         </Container>
       </div>
 
-      <div className="overflow-hidden border-b border-gray-100 bg-white shadow-sm">
+      <div className="relative border-b border-gray-100 bg-white shadow-sm">
         <Container className="flex h-12 items-center justify-between gap-3 lg:h-[72px]">
           <Link
             href="/"
@@ -107,8 +107,10 @@ export function Header({ pathname = "/" }: HeaderProps) {
 
         <div
           className={cn(
-            "grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-in-out lg:hidden",
-            mobileOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+            "absolute left-0 right-0 top-full z-40 grid overflow-hidden border-t border-gray-100 bg-white shadow-sm transition-[grid-template-rows,opacity] duration-300 ease-in-out lg:hidden",
+            mobileOpen
+              ? "grid-rows-[1fr] opacity-100"
+              : "pointer-events-none grid-rows-[0fr] opacity-0",
           )}
         >
           <nav
@@ -116,10 +118,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
             aria-label="Mobile navigation"
             aria-hidden={!mobileOpen}
             inert={mobileOpen ? undefined : true}
-            className={cn(
-              "min-h-0 border-t border-gray-100 bg-white px-8 py-4 transition-transform duration-300 ease-in-out",
-              mobileOpen ? "translate-y-0" : "-translate-y-1",
-            )}
+            className="min-h-0 overflow-hidden px-8 py-4"
           >
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
