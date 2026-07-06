@@ -7,7 +7,7 @@ export function ServicesHeroSection() {
   return (
     <section
       aria-label="Services hero"
-      className="relative overflow-hidden bg-dark pb-16 pt-20 md:min-h-[502px] md:pb-20 md:pt-20"
+      className="relative overflow-hidden bg-dark pb-14 pt-16 md:min-h-[502px] md:pb-20 md:pt-20"
     >
       <div
         className="pointer-events-none absolute -left-[106px] -top-[206px] size-[652px] rounded-full opacity-30"
@@ -30,12 +30,12 @@ export function ServicesHeroSection() {
         <Badge
           variant="hero-dark"
           showDot={false}
-          className="mb-6 px-[15.4px] py-[6.6px] text-[11.84px] tracking-[1.184px]"
+          className="mb-4 px-[15.4px] py-[6.6px] text-[11.84px] tracking-[1.184px] md:mb-6"
         >
           {servicesHero.badge}
         </Badge>
 
-        <h1 className="max-w-[700px] font-display text-[clamp(2.25rem,5.5vw,58.55px)] font-extrabold leading-[63.234px] tracking-[-1.7565px]">
+        <h1 className="max-w-[700px] font-display text-[clamp(2.25rem,5.5vw,58.55px)] font-extrabold leading-[1.08] tracking-[-0.03em]">
           <span className="block text-white">
             {servicesHero.headline.line1}{" "}
             {servicesHero.headline.line2Prefix}
@@ -45,7 +45,7 @@ export function ServicesHeroSection() {
           </span>
         </h1>
 
-        <p className="mt-6 max-w-[560px] text-[16.8px] leading-[30.24px] text-white/50">
+        <p className="mt-4 max-w-[560px] text-[15.2px] leading-[26px] text-white/50 md:mt-6 md:text-[16.8px] md:leading-[30.24px]">
           {servicesHero.subtext}
         </p>
       </Container>

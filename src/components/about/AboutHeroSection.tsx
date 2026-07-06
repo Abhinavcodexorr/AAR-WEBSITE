@@ -7,7 +7,7 @@ export function AboutHeroSection() {
   return (
     <section
       aria-label="About Us hero"
-      className="relative overflow-hidden bg-dark pb-16 pt-20 md:min-h-[505px] md:pb-20 md:pt-20"
+      className="relative overflow-hidden bg-dark pb-14 pt-16 md:min-h-[505px] md:pb-20 md:pt-20"
     >
       <div
         className="pointer-events-none absolute left-[51%] top-[-236px] size-[712px] -translate-x-1/4 rounded-full opacity-30"
@@ -30,12 +30,12 @@ export function AboutHeroSection() {
         <Badge
           variant="hero-dark"
           showDot={false}
-          className="mb-6 px-[15.4px] py-[6.6px] text-[11.84px] tracking-[1.184px]"
+          className="mb-4 px-[15.4px] py-[6.6px] text-[11.84px] tracking-[1.184px] md:mb-6"
         >
           {aboutHero.badge}
         </Badge>
 
-        <h1 className="max-w-[720px] font-display text-[clamp(2.25rem,5.5vw,58.55px)] font-extrabold leading-[63.234px] tracking-[-1.7565px]">
+        <h1 className="max-w-[720px] font-display text-[clamp(2.25rem,5.5vw,58.55px)] font-extrabold leading-[1.08] tracking-[-0.03em]">
           <span className="block text-white">{aboutHero.headline.line1}</span>
           <span className="block text-white">
             {aboutHero.headline.line2Prefix}{" "}
@@ -46,7 +46,7 @@ export function AboutHeroSection() {
           </span>
         </h1>
 
-        <p className="mt-6 max-w-[580px] text-[16.8px] leading-[30.24px] text-white/50">
+        <p className="mt-4 max-w-[580px] text-[15.2px] leading-[26px] text-white/50 md:mt-6 md:text-[16.8px] md:leading-[30.24px]">
           {aboutHero.subtext}
         </p>
       </Container>
