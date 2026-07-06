@@ -6,7 +6,7 @@ import {
   industryOptions,
   researchRequirementOptions,
 } from "@/data/contact";
-import { countryCodes } from "@/data/countryCodes";
+import { CountryCodeSelect } from "@/components/contact/CountryCodeSelect";
 import {
   getPhoneMaxLength,
   initialContactFormValues,
@@ -176,39 +176,21 @@ export function ContactForm() {
         className="mt-4"
         label={contactForm.fields.phoneNumber.label}
         error={errors.phoneNumber}
-        hint={
-          values.countryCode === "+91"
-            ? values.phoneNumber.startsWith("0")
-              ? "Enter 11 digits (including leading 0)"
-              : "Enter 10-digit mobile number"
-            : undefined
-        }
       >
         <div className="flex gap-2">
-          <div className="relative min-w-0 shrink-0 sm:max-w-[44%]">
-            <select
-              id="country-code"
-              name="countryCode"
-              value={values.countryCode}
-              aria-label="Country code"
-              onChange={(event) => {
-                const countryCode = event.target.value;
-                updateField("countryCode", countryCode);
-                updateField(
-                  "phoneNumber",
-                  sanitizePhoneInput(values.phoneNumber, countryCode),
-                );
-              }}
-              className={`${inputClassName} h-[51px] w-full min-w-[148px] max-w-[200px] appearance-none pr-9 sm:min-w-[168px]`}
-            >
-              {countryCodes.map(({ code, country }) => (
-                <option key={`${code}-${country}`} value={code}>
-                  {code} {country}
-                </option>
-              ))}
-            </select>
-            <ChevronIcon className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" />
-          </div>
+          <CountryCodeSelect
+            id="country-code"
+            name="countryCode"
+            value={values.countryCode}
+            inputClassName={inputClassName}
+            onChange={(countryCode) => {
+              updateField("countryCode", countryCode);
+              updateField(
+                "phoneNumber",
+                sanitizePhoneInput(values.phoneNumber, countryCode),
+              );
+            }}
+          />
           <input
             id="phone-number"
             name="phoneNumber"

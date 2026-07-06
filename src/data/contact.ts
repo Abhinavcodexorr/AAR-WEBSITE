@@ -58,6 +58,7 @@ export const contactForm = {
   },
 };
 
+export const industryOptions = [
   "Technology & SaaS",
   "Healthcare & Life Sciences",
   "Manufacturing & Industrial",
