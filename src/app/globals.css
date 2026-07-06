@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #0f0d1e;
+  --color-dark-deep: #08061a;
+  --color-dark-alt: #100e1e;
+  --color-orange: #e8451a;
+  --color-orange-light: #f05a35;
+  --color-orange-soft: #f4866a;
+  --color-orange-dark: #b83010;
+  --color-orange-mid: #c73b15;
+  --color-peach: #fff8f6;
+  --color-peach-soft: #fef0ed;
+  --color-peach-light: #fffaf9;
+  --color-text-dark: #0f0d1a;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #374151;
+  --color-gray-400: #9ca3af;
+  --color-cyan: #06b6d4;
+  --font-display: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --max-width-container: 1320px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-body text-text-dark antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: linear-gradient(
+      175deg,
+      #f4866a 0%,
+      #e8451a 45%,
+      #06b6d4 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-stat {
+    background: linear-gradient(144deg, #ffffff 0%, #fdcdb8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-hero {
+    background: linear-gradient(
+      90deg,
+      #f4866a 0%,
+      #e8451a 50%,
+      #06b6d4 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+}
