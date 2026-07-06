@@ -101,17 +101,28 @@ export function Header({ pathname = "/" }: HeaderProps) {
           </button>
         </Container>
 
-        {mobileOpen && (
+        <div
+          className={cn(
+            "grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-in-out lg:hidden",
+            mobileOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+          )}
+        >
           <nav
             id="mobile-nav"
             aria-label="Mobile navigation"
-            className="border-t border-gray-100 bg-white px-8 py-4 lg:hidden"
+            aria-hidden={!mobileOpen}
+            inert={mobileOpen ? undefined : true}
+            className={cn(
+              "min-h-0 border-t border-gray-100 bg-white px-8 py-4 transition-transform duration-300 ease-in-out",
+              mobileOpen ? "translate-y-0" : "-translate-y-1",
+            )}
           >
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
+                    tabIndex={mobileOpen ? 0 : -1}
                     className={cn(
                       "block rounded-lg px-3 py-2.5 font-display text-[15px]",
                       isActive(link)
@@ -126,7 +137,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
               ))}
             </ul>
           </nav>
-        )}
+        </div>
       </div>
     </header>
   );
