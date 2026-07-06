@@ -15,22 +15,24 @@ export function SiteLogo({
   const isHeader = variant === "header";
 
   return (
-    <Image
-      src="/images/logo.png"
-      alt="AAR Insights & Research"
-      width={isHeader ? 138 : 144}
-      height={isHeader ? 92 : 96}
-      quality={100}
-      unoptimized
-      priority={priority}
-      sizes={isHeader ? "(min-width: 1024px) 69px, 60px" : "72px"}
+    <span
       className={cn(
-        "object-contain",
-        isHeader
-          ? "h-10 w-[60px] rounded-[6px] lg:h-[46px] lg:w-[69px]"
-          : "h-12 w-[72px] rounded-[6px]",
+        "relative inline-flex shrink-0 items-center",
+        isHeader ? "h-9 w-[54px] lg:h-[46px] lg:w-[69px]" : "h-12 w-[72px]",
         className,
       )}
-    />
+    >
+      <Image
+        src="/images/logo.png"
+        alt="AAR Insights & Research"
+        width={isHeader ? 138 : 144}
+        height={isHeader ? 92 : 96}
+        quality={100}
+        unoptimized
+        priority={priority}
+        sizes={isHeader ? "(min-width: 1024px) 69px, 54px" : "72px"}
+        className="block h-full w-full rounded-[6px] object-contain"
+      />
+    </span>
   );
 }

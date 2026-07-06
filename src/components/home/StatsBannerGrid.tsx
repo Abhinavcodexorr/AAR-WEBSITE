@@ -21,26 +21,26 @@ function StatCard({
 
   return (
     <article className="rounded-[14px] border border-white/[0.06] px-[25px] py-[33px] text-center transition-all duration-200 hover:border-white/12 hover:bg-white/[0.04]">
-      <div className="mx-auto flex w-fit items-end justify-center">
-        <div className="flex flex-col items-center">
-          <div
-            className={cn(
-              "mb-4 flex size-[42px] items-center justify-center rounded-[10px]",
-              stat.color === "orange" ? "bg-orange/15" : "bg-cyan/15",
-            )}
-          >
-            <img
-              src={stat.icon}
-              alt=""
-              width={20}
-              height={20}
-              className="size-5"
-              aria-hidden
-            />
-          </div>
-          <span className={valueClassName}>{count}</span>
+      <div className="mx-auto flex flex-col items-center">
+        <div
+          className={cn(
+            "mb-4 flex size-[42px] items-center justify-center rounded-[10px]",
+            stat.color === "orange" ? "bg-orange/15" : "bg-cyan/15",
+          )}
+        >
+          <img
+            src={stat.icon}
+            alt=""
+            width={20}
+            height={20}
+            className="size-5"
+            aria-hidden
+          />
         </div>
-        {suffix ? <span className={cn(valueClassName, "-ml-0.5")}>{suffix}</span> : null}
+        <div className="flex items-end justify-center">
+          <span className={valueClassName}>{count}</span>
+          {suffix ? <span className={cn(valueClassName, "-ml-0.5")}>{suffix}</span> : null}
+        </div>
       </div>
       <p className="mt-2 font-display text-[14.4px] font-bold leading-[21.6px] text-white">
         {stat.label}
