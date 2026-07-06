@@ -14,27 +14,34 @@ function StatCard({
   const { target, suffix } = parseStatValue(stat.value);
   const count = useCountUp(target, animate);
 
+  const valueClassName = cn(
+    "font-display text-[56px] font-extrabold leading-[56px] tracking-[-2.8px]",
+    stat.color === "orange" ? "text-orange-dark" : "text-cyan",
+  );
+
   return (
     <article className="rounded-[14px] border border-white/[0.06] px-[25px] py-[33px] text-center transition-all duration-200 hover:border-white/12 hover:bg-white/[0.04]">
-      <div className="mx-auto mb-4 flex size-[42px] items-center justify-center rounded-[10px] bg-cyan/15">
-        <img
-          src={stat.icon}
-          alt=""
-          width={20}
-          height={20}
-          className="size-5"
-          aria-hidden
-        />
+      <div className="mx-auto flex w-fit items-end justify-center">
+        <div className="flex flex-col items-center">
+          <div
+            className={cn(
+              "mb-4 flex size-[42px] items-center justify-center rounded-[10px]",
+              stat.color === "orange" ? "bg-orange/15" : "bg-cyan/15",
+            )}
+          >
+            <img
+              src={stat.icon}
+              alt=""
+              width={20}
+              height={20}
+              className="size-5"
+              aria-hidden
+            />
+          </div>
+          <span className={valueClassName}>{count}</span>
+        </div>
+        {suffix ? <span className={cn(valueClassName, "-ml-0.5")}>{suffix}</span> : null}
       </div>
-      <p
-        className={cn(
-          "font-display text-[56px] font-extrabold leading-[56px] tracking-[-2.8px]",
-          stat.color === "orange" ? "text-orange-dark" : "text-cyan",
-        )}
-      >
-        {count}
-        {suffix}
-      </p>
       <p className="mt-2 font-display text-[14.4px] font-bold leading-[21.6px] text-white">
         {stat.label}
       </p>
