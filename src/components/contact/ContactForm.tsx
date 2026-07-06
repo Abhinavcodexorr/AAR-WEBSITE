@@ -88,10 +88,10 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <h2 className="font-display text-[32px] font-extrabold leading-8 tracking-[-0.02em] text-text-dark">
+      <h2 className="font-display text-[26px] font-extrabold leading-[1.25] tracking-[-0.02em] text-text-dark sm:text-[32px] sm:leading-8">
         {contactForm.title}
       </h2>
-      <p className="mt-1.5 text-[15.2px] leading-[20px] text-gray-500">
+      <p className="mt-3 text-[15px] leading-[24px] text-gray-500 sm:mt-4 sm:text-[15.2px] sm:leading-[22px]">
         {contactForm.description}
       </p>
 
@@ -200,6 +200,8 @@ export function ContactForm() {
             value={values.phoneNumber}
             maxLength={phoneMaxLength}
             placeholder={contactForm.fields.phoneNumber.placeholder}
+            required
+            aria-required="true"
             aria-invalid={!!errors.phoneNumber}
             aria-describedby={errors.phoneNumber ? "phone-number-error" : undefined}
             onChange={(event) =>

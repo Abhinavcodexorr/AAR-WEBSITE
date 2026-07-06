@@ -44,7 +44,7 @@ export function ContactMainSection() {
             </div>
           </aside>
 
-          <div className="rounded-[20px] border border-orange/10 bg-white p-[49px] shadow-[0_24px_64px_rgba(15,13,30,0.06)]">
+          <div className="rounded-[20px] border border-orange/10 bg-white p-6 shadow-[0_24px_64px_rgba(15,13,30,0.06)] sm:p-8 md:p-[49px]">
             <ContactForm />
           </div>
         </div>

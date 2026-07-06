@@ -21,16 +21,15 @@ export function sanitizePhoneInput(value: string, countryCode = "+91") {
   const digits = value.replace(/\D/g, "");
 
   if (countryCode === "+91") {
-    const maxLength = digits.startsWith("0") ? 11 : 10;
-    return digits.slice(0, maxLength);
+    return digits.slice(0, 11);
   }
 
   return digits.slice(0, 15);
 }
 
-export function getPhoneMaxLength(countryCode: string, phoneNumber: string) {
+export function getPhoneMaxLength(countryCode: string, _phoneNumber: string) {
   if (countryCode === "+91") {
-    return phoneNumber.startsWith("0") ? 11 : 10;
+    return 11;
   }
 
   return 15;
@@ -38,19 +37,12 @@ export function getPhoneMaxLength(countryCode: string, phoneNumber: string) {
 
 export function validatePhoneNumber(countryCode: string, phoneDigits: string) {
   if (!phoneDigits) {
-    return undefined;
+    return "Please enter your mobile number.";
   }
 
   if (countryCode === "+91") {
-    if (phoneDigits.startsWith("0")) {
-      if (phoneDigits.length !== 11) {
-        return "Mobile number starting with 0 must be 11 digits.";
-      }
-      return undefined;
-    }
-
-    if (phoneDigits.length !== 10) {
-      return "Mobile number must be 10 digits.";
+    if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+      return "Mobile number must be 10 or 11 digits.";
     }
 
     return undefined;
