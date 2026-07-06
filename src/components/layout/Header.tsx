@@ -22,27 +22,27 @@ export function Header({ pathname = "/" }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50">
       <div className="bg-dark-deep text-white/70">
-        <Container className="flex h-[38px] items-center justify-between text-[11px]">
-          <p className="hidden truncate uppercase tracking-[0.04em] sm:block">
+        <Container className="flex flex-col items-center gap-2 px-4 py-2.5 md:h-[38px] md:flex-row md:items-center md:justify-between md:gap-4 md:px-8 md:py-0">
+          <p className="text-center text-[11px] uppercase leading-[15px] tracking-[0.04em] md:truncate md:text-left">
             {topBar.tagline}
           </p>
-          <div className="ml-auto flex items-center gap-4 sm:gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[12px] leading-none md:ml-auto md:shrink-0 md:gap-8 md:text-[11px]">
             <a
               href={contactInfo.email.href}
-              className="flex items-center gap-1.5 transition-colors hover:text-white"
+              className="flex items-center gap-2 transition-colors hover:text-white"
             >
-              <MailIcon />
-              <span className="hidden md:inline">
+              <MailIcon className="size-3.5 md:size-[11px]" />
+              <span className="whitespace-nowrap">
                 <span className="sr-only">{contactInfo.email.label}: </span>
                 {contactInfo.email.value}
               </span>
             </a>
             <a
               href={contactInfo.phone.href}
-              className="flex items-center gap-1.5 transition-colors hover:text-white"
+              className="flex items-center gap-2 transition-colors hover:text-white"
             >
-              <PhoneIcon />
-              <span>
+              <PhoneIcon className="size-3.5 md:size-[11px]" />
+              <span className="whitespace-nowrap">
                 <span className="sr-only">{contactInfo.phone.label}: </span>
                 {contactInfo.phone.value}
               </span>
@@ -132,9 +132,14 @@ export function Header({ pathname = "/" }: HeaderProps) {
   );
 }
 
-function MailIcon() {
+function MailIcon({ className }: { className?: string }) {
   return (
-    <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden>
+    <svg
+      viewBox="0 0 9 9"
+      fill="none"
+      aria-hidden
+      className={cn("shrink-0", className)}
+    >
       <rect
         x="0.5"
         y="1.5"
@@ -148,9 +153,14 @@ function MailIcon() {
   );
 }
 
-function PhoneIcon() {
+function PhoneIcon({ className }: { className?: string }) {
   return (
-    <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden>
+    <svg
+      viewBox="0 0 9 9"
+      fill="none"
+      aria-hidden
+      className={cn("shrink-0", className)}
+    >
       <path
         d="M2 1h2l1 2-1.5 1a5 5 0 002.5 2.5L7 5l2 1v2a1 1 0 01-1 1C3.5 9 0 5.5 0 1a1 1 0 011-1z"
         stroke="currentColor"
