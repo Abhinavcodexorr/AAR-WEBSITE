@@ -52,7 +52,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
       </div>
 
       <div className="border-b border-gray-100 bg-white shadow-sm">
-        <Container className="flex h-[72px] items-center justify-between gap-4">
+        <Container className="flex h-14 items-center justify-between gap-4 lg:h-[72px]">
           <Link href="/" aria-label="AAR Insights home">
             <SiteLogo variant="header" priority />
           </Link>
@@ -91,7 +91,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
 
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-lg border border-gray-200 lg:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-lg border border-gray-200 lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}

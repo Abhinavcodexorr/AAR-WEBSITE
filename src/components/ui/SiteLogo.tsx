@@ -23,10 +23,12 @@ export function SiteLogo({
       quality={100}
       unoptimized
       priority={priority}
-      sizes={isHeader ? "69px" : "72px"}
+      sizes={isHeader ? "(min-width: 1024px) 69px, 60px" : "72px"}
       className={cn(
         "object-contain",
-        isHeader ? "h-[46px] w-[69px] rounded-[6px]" : "h-12 w-[72px] rounded-[6px]",
+        isHeader
+          ? "h-10 w-[60px] rounded-[6px] lg:h-[46px] lg:w-[69px]"
+          : "h-12 w-[72px] rounded-[6px]",
         className,
       )}
     />
