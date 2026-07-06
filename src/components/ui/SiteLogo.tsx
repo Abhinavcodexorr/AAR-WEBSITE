@@ -17,7 +17,7 @@ export function SiteLogo({
   return (
     <span
       className={cn(
-        "relative inline-flex shrink-0 items-center",
+        "relative block shrink-0 overflow-hidden",
         isHeader ? "h-9 w-[54px] lg:h-[46px] lg:w-[69px]" : "h-12 w-[72px]",
         className,
       )}
@@ -25,13 +25,12 @@ export function SiteLogo({
       <Image
         src="/images/logo.png"
         alt="AAR Insights & Research"
-        width={isHeader ? 138 : 144}
-        height={isHeader ? 92 : 96}
+        fill
         quality={100}
         unoptimized
         priority={priority}
         sizes={isHeader ? "(min-width: 1024px) 69px, 54px" : "72px"}
-        className="block h-full w-full rounded-[6px] object-contain"
+        className="rounded-[6px] object-contain"
       />
     </span>
   );
