@@ -141,7 +141,11 @@ export function Footer({ showCtaBanner = true }: FooterProps) {
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.8px] leading-[19.2px] text-white/[0.22]">
             {footer.legal.map((item) => (
-              <Link key={item} href="#" className="transition-colors hover:text-white/40">
+              <Link
+                key={item}
+                href={getFooterLegalHref(item)}
+                className="transition-colors hover:text-white/40"
+              >
                 {item}
               </Link>
             ))}
@@ -240,6 +244,14 @@ function getFooterLinkHref(label: string) {
   if (routes[label]) return routes[label];
 
   return `/#${label.toLowerCase().replace(/\s+/g, "-")}`;
+}
+
+function getFooterLegalHref(label: string) {
+  const routes: Record<string, string> = {
+    "Privacy Policy": "/privacy-policy",
+  };
+
+  return routes[label] ?? "#";
 }
 
 function FooterColumn({
