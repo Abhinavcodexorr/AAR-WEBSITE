@@ -72,12 +72,15 @@ export function FadeIn({
 
 type StaggerContainerProps = MotionWrapperProps & {
   delay?: number;
+  /** Use mount animation instead of scroll — required when nested inside SectionFade/FadeIn */
+  animateOnMount?: boolean;
 };
 
 export function StaggerContainer({
   children,
   delay = 0,
   className,
+  animateOnMount = false,
 }: StaggerContainerProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -89,8 +92,12 @@ export function StaggerContainer({
     <motion.div
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      {...(animateOnMount
+        ? { animate: "visible" }
+        : {
+            whileInView: "visible",
+            viewport: { once: true, amount: 0.2 },
+          })}
       variants={{
         hidden: { opacity: 0 },
         visible: {
