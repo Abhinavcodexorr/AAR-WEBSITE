@@ -40,7 +40,6 @@ export const contactForm = {
   successTitle: "Thank you for contacting us!",
   successMessage:
     "We have received your inquiry successfully. Our team will review your request and get back to you as soon as possible.",
-  successActionLabel: "Explore our services",
   fields: {
     fullName: { label: "Full Name *", placeholder: "Your full name" },
     companyName: { label: "Company Name *", placeholder: "Your organization" },

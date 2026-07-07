@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import {
   contactForm,
   industryOptions,
@@ -32,6 +31,30 @@ export function ContactForm() {
   const [values, setValues] = useState<ContactFormValues>(initialContactFormValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!submitted) return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      successRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    });
+
+    const timeoutId = window.setTimeout(() => {
+      setSubmitted(false);
+      setValues(initialContactFormValues);
+      setErrors({});
+    }, 2000);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(timeoutId);
+    };
+  }, [submitted]);
 
   function updateField<K extends keyof ContactFormValues>(
     field: K,
@@ -63,8 +86,12 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="py-8 text-center">
-        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-peach-soft text-orange">
+      <div
+        ref={successRef}
+        className="flex flex-col items-center px-4 py-12 text-center sm:py-16"
+        aria-live="polite"
+      >
+        <div className="flex size-14 items-center justify-center rounded-full bg-peach-soft text-orange">
           <CheckIcon />
         </div>
         <h2 className="mt-6 font-display text-[28px] font-extrabold leading-8 tracking-[-0.02em] text-text-dark">
@@ -73,12 +100,6 @@ export function ContactForm() {
         <p className="mx-auto mt-3 max-w-md text-[15.2px] leading-[24px] text-gray-500">
           {contactForm.successMessage}
         </p>
-        <Link
-          href="/services"
-          className="mt-8 inline-block font-display text-[14px] font-semibold text-orange transition-colors hover:text-orange-light"
-        >
-          {contactForm.successActionLabel}
-        </Link>
       </div>
     );
   }
