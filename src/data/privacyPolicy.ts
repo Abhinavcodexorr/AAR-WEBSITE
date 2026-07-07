@@ -1,19 +1,6 @@
-export type PrivacyPolicySubsection = {
-  title: string;
-  intro?: string;
-  items: string[];
-};
+import type { LegalPageData } from "./legalPageTypes";
 
-export type PrivacyPolicySection = {
-  id: string;
-  title: string;
-  paragraphs?: string[];
-  paragraphsAfter?: string[];
-  subsections?: PrivacyPolicySubsection[];
-  items?: string[];
-};
-
-export const privacyPolicyPage = {
+export const privacyPolicyPage: LegalPageData = {
   hero: {
     badge: "Legal",
     headline: {
@@ -172,5 +159,5 @@ export const privacyPolicyPage = {
         "We will make reasonable efforts to respond to your request in a timely manner.",
       ],
     },
-  ] satisfies PrivacyPolicySection[],
+  ],
 };

@@ -3,26 +3,26 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LegalDocumentHeroSection } from "@/components/legal/LegalDocumentHeroSection";
 import { LegalDocumentContentSection } from "@/components/legal/LegalDocumentContentSection";
-import { privacyPolicyPage } from "@/data/privacyPolicy";
+import { termsAndConditionsPage } from "@/data/termsAndConditions";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | AAR Insights",
+  title: "Terms & Conditions | AAR Insights",
   description:
-    "Learn how AAR Insights and Research collects, uses, and protects your personal information when you visit our website or contact our team.",
+    "Read the Terms & Conditions for using the AAR Insights and Research website and services.",
 };
 
-export default function PrivacyPolicyPage() {
+export default function TermsAndConditionsPage() {
   return (
     <>
-      <Header pathname="/privacy-policy" />
+      <Header pathname="/terms-and-conditions" />
       <main id="main-content">
         <LegalDocumentHeroSection
-          hero={privacyPolicyPage.hero}
-          ariaLabel="Privacy Policy hero"
+          hero={termsAndConditionsPage.hero}
+          ariaLabel="Terms and Conditions hero"
         />
         <LegalDocumentContentSection
-          page={privacyPolicyPage}
-          ariaLabel="Privacy Policy content"
+          page={termsAndConditionsPage}
+          ariaLabel="Terms and Conditions content"
         />
       </main>
       <Footer showCtaBanner={false} />

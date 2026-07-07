@@ -249,6 +249,7 @@ function getFooterLinkHref(label: string) {
 function getFooterLegalHref(label: string) {
   const routes: Record<string, string> = {
     "Privacy Policy": "/privacy-policy",
+    "Terms & Conditions": "/terms-and-conditions",
   };
 
   return routes[label] ?? "#";

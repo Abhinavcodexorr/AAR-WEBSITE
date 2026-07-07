@@ -2,37 +2,42 @@
 
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import {
-  privacyPolicyPage,
-  type PrivacyPolicySection,
-} from "@/data/privacyPolicy";
+import type { LegalPageData, LegalPageSection } from "@/data/legalPageTypes";
 
-export function PrivacyPolicyContentSection() {
+type LegalDocumentContentSectionProps = {
+  page: LegalPageData;
+  ariaLabel: string;
+};
+
+export function LegalDocumentContentSection({
+  page,
+  ariaLabel,
+}: LegalDocumentContentSectionProps) {
   return (
-    <section aria-label="Privacy Policy content" className="bg-white pb-16 pt-10 md:pb-20 md:pt-12">
+    <section aria-label={ariaLabel} className="bg-white pb-16 pt-10 md:pb-20 md:pt-12">
       <Container>
         <div className="mx-auto max-w-[820px]">
           <div className="rounded-[20px] border border-orange/10 bg-peach-light p-8 md:p-12">
-              <p className="inline-flex items-center gap-2 rounded-full bg-peach-soft px-[14px] py-[6px] font-body text-[12.8px] font-semibold uppercase tracking-[0.08em] text-orange-dark">
-                Effective Date: {privacyPolicyPage.effectiveDate}
-              </p>
+            <p className="inline-flex items-center gap-2 rounded-full bg-peach-soft px-[14px] py-[6px] font-body text-[12.8px] font-semibold uppercase tracking-[0.08em] text-orange-dark">
+              Effective Date: {page.effectiveDate}
+            </p>
 
-              <div className="mt-8 space-y-4">
-                {privacyPolicyPage.intro.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="text-[15.2px] leading-[28px] text-gray-500"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+            <div className="mt-8 space-y-4">
+              {page.intro.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="text-[15.2px] leading-[28px] text-gray-500"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
 
-              <div className="mt-10 space-y-10">
-                {privacyPolicyPage.sections.map((section) => (
-                  <PolicySection key={section.id} section={section} />
-                ))}
-              </div>
+            <div className="mt-10 space-y-10">
+              {page.sections.map((section) => (
+                <LegalSection key={section.id} section={section} />
+              ))}
+            </div>
           </div>
         </div>
       </Container>
@@ -40,7 +45,7 @@ export function PrivacyPolicyContentSection() {
   );
 }
 
-function PolicySection({ section }: { section: PrivacyPolicySection }) {
+function LegalSection({ section }: { section: LegalPageSection }) {
   return (
     <article id={section.id} className="scroll-mt-28">
       <div
@@ -52,7 +57,7 @@ function PolicySection({ section }: { section: PrivacyPolicySection }) {
       </h2>
 
       {section.paragraphs?.map((paragraph) => (
-        <PolicyParagraph key={paragraph}>{paragraph}</PolicyParagraph>
+        <LegalParagraph key={paragraph}>{paragraph}</LegalParagraph>
       ))}
 
       {section.subsections?.map((subsection) => (
@@ -65,20 +70,20 @@ function PolicySection({ section }: { section: PrivacyPolicySection }) {
               {subsection.intro}
             </p>
           ) : null}
-          <PolicyList items={subsection.items} />
+          <LegalList items={subsection.items} />
         </div>
       ))}
 
-      {section.items ? <PolicyList items={section.items} /> : null}
+      {section.items ? <LegalList items={section.items} /> : null}
 
       {section.paragraphsAfter?.map((paragraph) => (
-        <PolicyParagraph key={paragraph}>{paragraph}</PolicyParagraph>
+        <LegalParagraph key={paragraph}>{paragraph}</LegalParagraph>
       ))}
     </article>
   );
 }
 
-function PolicyParagraph({ children }: { children: string }) {
+function LegalParagraph({ children }: { children: string }) {
   if (children.includes("Contact Us page")) {
     const [before, after] = children.split("Contact Us page");
 
@@ -96,12 +101,29 @@ function PolicyParagraph({ children }: { children: string }) {
     );
   }
 
+  if (children.includes("Privacy Policy")) {
+    const [before, after] = children.split("Privacy Policy");
+
+    return (
+      <p className="mt-4 text-[15.2px] leading-[28px] text-gray-500">
+        {before}
+        <Link
+          href="/privacy-policy"
+          className="font-semibold text-orange transition-colors hover:text-orange-light"
+        >
+          Privacy Policy
+        </Link>
+        {after}
+      </p>
+    );
+  }
+
   return (
     <p className="mt-4 text-[15.2px] leading-[28px] text-gray-500">{children}</p>
   );
 }
 
-function PolicyList({ items }: { items: string[] }) {
+function LegalList({ items }: { items: string[] }) {
   return (
     <ul className="mt-4 space-y-2">
       {items.map((item) => (

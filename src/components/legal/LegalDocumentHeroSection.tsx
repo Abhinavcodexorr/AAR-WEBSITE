@@ -4,12 +4,20 @@ import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { GradientText } from "@/components/ui/GradientText";
 import { FadeIn, HeroTitle, HeroZoom } from "@/components/MotionWrapper";
-import { privacyPolicyPage } from "@/data/privacyPolicy";
+import type { LegalPageData } from "@/data/legalPageTypes";
 
-export function PrivacyPolicyHeroSection() {
+type LegalDocumentHeroSectionProps = {
+  hero: LegalPageData["hero"];
+  ariaLabel: string;
+};
+
+export function LegalDocumentHeroSection({
+  hero,
+  ariaLabel,
+}: LegalDocumentHeroSectionProps) {
   return (
     <section
-      aria-label="Privacy Policy hero"
+      aria-label={ariaLabel}
       className="relative overflow-hidden bg-dark pb-10 pt-20 md:pb-12 md:pt-20"
     >
       <HeroZoom className="pointer-events-none absolute inset-0">
@@ -38,20 +46,20 @@ export function PrivacyPolicyHeroSection() {
             showDot={false}
             className="mb-6 px-[15px] py-[7px] text-[11.84px]"
           >
-            {privacyPolicyPage.hero.badge}
+            {hero.badge}
           </Badge>
         </FadeIn>
 
         <HeroTitle>
           <h1 className="max-w-[700px] font-display text-[clamp(2.25rem,5.5vw,3.66rem)] font-extrabold leading-[1.08] tracking-[-0.03em]">
-            <span className="text-white">{privacyPolicyPage.hero.headline.line1} </span>
-            <GradientText>{privacyPolicyPage.hero.headline.gradient}</GradientText>
+            <span className="text-white">{hero.headline.line1} </span>
+            <GradientText>{hero.headline.gradient}</GradientText>
           </h1>
         </HeroTitle>
 
         <FadeIn delay={0.7} y={20}>
           <p className="mt-6 max-w-[560px] text-[15.2px] leading-[28.8px] text-white/50 md:text-[16.8px] md:leading-[29px]">
-            {privacyPolicyPage.hero.subtext}
+            {hero.subtext}
           </p>
         </FadeIn>
       </Container>
