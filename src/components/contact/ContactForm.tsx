@@ -281,8 +281,10 @@ export function ContactForm() {
         disabled={!canSubmit}
         aria-disabled={!canSubmit}
         className={cn(
-          "mt-8 flex h-[53.6px] w-full items-center justify-center gap-2 rounded-[10px] bg-gradient-to-br from-orange to-orange-light px-6 font-display text-[15.2px] font-bold leading-[22px] tracking-[-0.152px] text-white shadow-[0_8px_16px_rgba(232,69,26,0.35)] transition-opacity",
-          canSubmit ? "hover:opacity-95" : "cursor-not-allowed opacity-50",
+          "mt-8 flex h-[53.6px] w-full items-center justify-center gap-2 rounded-[10px] bg-gradient-to-br from-orange to-orange-light px-6 font-display text-[15.2px] font-bold leading-[22px] tracking-[-0.152px] text-white shadow-[0_8px_16px_rgba(232,69,26,0.35)] transition-[transform,opacity,box-shadow] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+          canSubmit
+            ? "cursor-pointer hover:-translate-y-1 hover:opacity-95 hover:shadow-[0_12px_24px_rgba(232,69,26,0.45)] active:translate-y-0"
+            : "cursor-not-allowed opacity-50",
         )}
       >
         <CalendarIcon />

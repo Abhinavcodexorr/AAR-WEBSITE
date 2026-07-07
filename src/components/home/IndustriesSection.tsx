@@ -58,9 +58,8 @@ export function IndustriesSection() {
           <StaggerContainer className="grid gap-[10px] sm:grid-cols-2 sm:items-stretch lg:grid-cols-4">
             {industries.map((industry) => (
               <StaggerItem key={industry.id} className="h-full">
-                <Link
-                  href="/industries"
-                  className="group flex h-full min-h-[74px] cursor-pointer items-center justify-between gap-3 rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-[21px] py-[16.2px] transition-all duration-200 hover:border-orange/30 hover:bg-white/[0.08]"
+                <div
+                  className="group flex h-full min-h-[74px] cursor-default items-center justify-between gap-3 rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-[21px] py-[16.2px] transition-[transform,border-color,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:border-orange/30 hover:bg-white/[0.08] hover:shadow-[0_12px_32px_rgba(232,69,26,0.12)]"
                 >
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-orange/[0.12]">
@@ -85,7 +84,7 @@ export function IndustriesSection() {
                     className="size-[14px] shrink-0 opacity-70 transition-opacity group-hover:opacity-100"
                     aria-hidden
                   />
-                </Link>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>

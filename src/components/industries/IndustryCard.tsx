@@ -10,7 +10,7 @@ export function IndustryCard({ industry }: IndustryCardProps) {
     <article
       id={industry.id}
       aria-labelledby={`${industry.id}-title`}
-      className="group cursor-pointer overflow-hidden rounded-[14px] border border-orange/[0.08] bg-white p-px transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:border-orange/20 hover:shadow-[0_16px_48px_rgba(232,69,26,0.12)]"
+      className="group cursor-default overflow-hidden rounded-[14px] border border-orange/[0.08] bg-white p-px transition-[transform,box-shadow,border-color] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:border-orange/20 hover:shadow-[0_16px_48px_rgba(232,69,26,0.12)]"
     >
       <div className="relative h-[160px] overflow-hidden bg-peach">
         <Image
