@@ -31,10 +31,10 @@ export function ProjectTypesSection() {
             </p>
           </div>
 
-          <StaggerContainer className="grid gap-6 md:grid-cols-2">
+          <StaggerContainer className="grid gap-6 md:grid-cols-2 md:items-stretch">
             {projectTypes.map((project) => (
-              <StaggerItem key={project.id}>
-                <article className="rounded-2xl border border-orange/[0.08] bg-white p-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-peach-soft/30 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]">
+              <StaggerItem key={project.id} className="h-full">
+                <article className="flex h-full flex-col rounded-2xl border border-orange/[0.08] bg-white p-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-peach-soft/30 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]">
                   <div className="flex items-center gap-[13.6px]">
                     <span className="flex size-11 shrink-0 items-center justify-center rounded-[11px] bg-gradient-to-br from-peach-soft to-[#fdd5c8]">
                       <img
@@ -53,7 +53,7 @@ export function ProjectTypesSection() {
                   <p className="pt-4 text-[14px] leading-[24.5px] text-gray-500">
                     {project.description}
                   </p>
-                  <ul className="space-y-2 pt-5">
+                  <ul className="mt-auto space-y-2 pt-5">
                     {project.items.map((item) => (
                       <li
                         key={item}

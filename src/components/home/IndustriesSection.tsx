@@ -55,14 +55,14 @@ export function IndustriesSection() {
             </Link>
           </div>
 
-          <StaggerContainer className="grid gap-[10px] sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerContainer className="grid gap-[10px] sm:grid-cols-2 sm:items-stretch lg:grid-cols-4">
             {industries.map((industry) => (
-              <StaggerItem key={industry.id}>
+              <StaggerItem key={industry.id} className="h-full">
                 <Link
                   href="/industries"
-                  className="group flex h-[74px] cursor-pointer items-center justify-between rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-[21px] py-[16.2px] transition-all duration-200 hover:border-orange/30 hover:bg-white/[0.08]"
+                  className="group flex h-full min-h-[74px] cursor-pointer items-center justify-between gap-3 rounded-[10px] border border-white/[0.08] bg-white/[0.04] px-[21px] py-[16.2px] transition-all duration-200 hover:border-orange/30 hover:bg-white/[0.08]"
                 >
-                  <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-orange/[0.12]">
                       <img
                         src={industry.icon}
@@ -73,7 +73,7 @@ export function IndustriesSection() {
                         aria-hidden
                       />
                     </span>
-                    <span className="truncate font-body text-[14px] font-medium leading-[21px] text-white/[0.68]">
+                    <span className="line-clamp-2 font-body text-[14px] font-medium leading-[21px] text-white/[0.68]">
                       {industry.name}
                     </span>
                   </div>

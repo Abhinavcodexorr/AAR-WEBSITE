@@ -8,6 +8,8 @@ export type CaseStudyItem = {
   tags: string[];
   image: string;
   reversed?: boolean;
+  showImageCategory?: boolean;
+  showImageEdgeFade?: boolean;
 };
 
 export const caseStudiesHero = {
@@ -33,6 +35,8 @@ export const caseStudies: CaseStudyItem[] = [
       "Phased expansion strategy supporting confident, evidence-backed market entry with clear regional prioritization and a validated go-to-market roadmap.",
     tags: ["Market Entry", "Market Sizing", "Competitive Analysis"],
     image: "/images/case-studies/saas-expansion.png",
+    showImageCategory: true,
+    showImageEdgeFade: true,
   },
   {
     id: "real-estate-sentiment",
@@ -47,6 +51,8 @@ export const caseStudies: CaseStudyItem[] = [
     tags: ["CATI Surveys", "In-depth Interviews", "Focus Groups", "B2B Research"],
     image: "/images/case-studies/real-estate.png",
     reversed: true,
+    showImageCategory: true,
+    showImageEdgeFade: true,
   },
   {
     id: "retail-cx-transformation",
@@ -60,6 +66,8 @@ export const caseStudies: CaseStudyItem[] = [
       "Improved customer satisfaction scores and reduced churn through targeted recommendations enabling more effective retention programs.",
     tags: ["Customer Insights", "Journey Mapping", "VoC"],
     image: "/images/case-studies/retail.jpg",
+    showImageCategory: true,
+    showImageEdgeFade: true,
   },
   {
     id: "investor-industry-intelligence",
@@ -74,5 +82,7 @@ export const caseStudies: CaseStudyItem[] = [
     tags: ["Industry Research", "Market Intelligence", "Investment"],
     image: "/images/case-studies/investor.png",
     reversed: true,
+    showImageCategory: true,
+    showImageEdgeFade: true,
   },
 ];

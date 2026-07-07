@@ -55,6 +55,22 @@ export function CaseStudyCard({ study }: CaseStudyCardProps) {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 591px"
           />
+          {study.showImageEdgeFade ? (
+            <div
+              className={cn(
+                "pointer-events-none absolute inset-y-0 z-[2] w-[32%] max-lg:hidden",
+                study.reversed
+                  ? "left-0 bg-gradient-to-l from-transparent via-white/45 to-white/90"
+                  : "right-0 bg-gradient-to-r from-transparent via-white/45 to-white/90",
+              )}
+              aria-hidden
+            />
+          ) : null}
+          {study.showImageCategory ? (
+            <span className="absolute left-5 top-5 z-10 inline-flex h-[28px] items-center justify-center rounded-full bg-orange px-[14px] font-display text-[10px] font-bold uppercase leading-none tracking-[0.4px] text-white">
+              {study.category}
+            </span>
+          ) : null}
         </div>
 
         <div

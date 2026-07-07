@@ -37,8 +37,10 @@ export const contactForm = {
   description:
     "Fill in the form and our team will be in touch to discuss your research requirements and schedule a consultation.",
   submitLabel: "Schedule a Consultation",
+  successTitle: "Thank you for contacting us!",
   successMessage:
-    "Thank you! Our team will respond within 24 business hours to discuss your research requirements.",
+    "We have received your inquiry successfully. Our team will review your request and get back to you as soon as possible.",
+  successActionLabel: "Explore our services",
   fields: {
     fullName: { label: "Full Name *", placeholder: "Your full name" },
     companyName: { label: "Company Name *", placeholder: "Your organization" },

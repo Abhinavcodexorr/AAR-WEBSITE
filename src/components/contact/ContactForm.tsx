@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   contactForm,
   industryOptions,
@@ -67,21 +68,17 @@ export function ContactForm() {
           <CheckIcon />
         </div>
         <h2 className="mt-6 font-display text-[28px] font-extrabold leading-8 tracking-[-0.02em] text-text-dark">
-          Thank You
+          {contactForm.successTitle}
         </h2>
         <p className="mx-auto mt-3 max-w-md text-[15.2px] leading-[24px] text-gray-500">
           {contactForm.successMessage}
         </p>
-        <button
-          type="button"
-          onClick={() => {
-            setSubmitted(false);
-            setValues(initialContactFormValues);
-          }}
-          className="mt-8 font-display text-[14px] font-semibold text-orange transition-colors hover:text-orange-light"
+        <Link
+          href="/services"
+          className="mt-8 inline-block font-display text-[14px] font-semibold text-orange transition-colors hover:text-orange-light"
         >
-          Submit another enquiry
-        </button>
+          {contactForm.successActionLabel}
+        </Link>
       </div>
     );
   }

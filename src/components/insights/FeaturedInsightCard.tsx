@@ -12,19 +12,28 @@ export function FeaturedInsightCard({ article }: FeaturedInsightCardProps) {
       aria-labelledby={`${article.id}-title`}
       className="grid overflow-hidden rounded-[20px] border border-orange/10 bg-white transition-all duration-200 hover:border-orange/20 hover:shadow-[0_12px_40px_rgba(232,69,26,0.08)] lg:grid-cols-[625fr_480fr]"
     >
-      <div className="relative -mb-px min-h-[280px] overflow-hidden bg-[#0f0d1e] sm:min-h-[360px] lg:mb-0 lg:min-h-[384px] lg:-mr-px lg:z-[1]">
+      <div className="relative -mb-px aspect-[625/384] overflow-hidden bg-[#0f0d1e] lg:mb-0 lg:-mr-px lg:z-[1]">
         <Image
           src={article.image}
           alt=""
           fill
-          className="object-cover object-left scale-[1.015] origin-left"
-          sizes="(max-width: 1024px) 100vw, 56vw"
+          className="object-cover object-center"
+          sizes="(max-width: 1024px) 100vw, 625px"
+          quality={100}
+          unoptimized
           priority
           aria-hidden
         />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[32%] bg-gradient-to-r from-transparent via-white/45 to-white/90 max-lg:hidden"
+          aria-hidden
+        />
+        <span className="absolute left-5 top-5 z-10 inline-flex h-[23px] min-w-[86px] items-center justify-center rounded-full bg-orange px-[10px] font-display text-[10px] font-bold uppercase leading-none tracking-[0.4px] text-white">
+          Featured
+        </span>
       </div>
 
-      <div className="flex flex-col justify-center p-8 md:p-12">
+      <div className="relative z-[2] flex flex-col justify-center bg-white p-8 md:p-12 lg:-ml-10 lg:pl-10">
         <span className="inline-block w-fit rounded-full bg-peach-soft px-[11.2px] py-[3.5px] font-body text-[12.8px] font-bold leading-[18px] text-orange-dark">
           {article.category}
         </span>
