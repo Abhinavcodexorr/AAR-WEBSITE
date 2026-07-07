@@ -9,14 +9,14 @@ export function VisionMissionSection() {
     <SectionFade>
       <section aria-label="Vision and Mission" className="bg-peach py-16 md:py-20">
         <Container>
-          <StaggerContainer className="grid gap-8 lg:grid-cols-2">
-            <StaggerItem>
+          <StaggerContainer className="grid gap-8 sm:items-stretch lg:grid-cols-2">
+            <StaggerItem className="h-full">
               <VisionMissionCard
                 title={visionMission.vision.title}
                 description={visionMission.vision.description}
               />
             </StaggerItem>
-            <StaggerItem>
+            <StaggerItem className="h-full">
               <VisionMissionCard
                 title={visionMission.mission.title}
                 description={visionMission.mission.description}
@@ -37,7 +37,7 @@ function VisionMissionCard({
   description: string;
 }) {
   return (
-    <article className="rounded-[20px] border border-orange/10 bg-white p-8 transition-all duration-200 hover:border-orange/20 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)] md:p-[49px]">
+    <article className="flex h-full flex-col rounded-[20px] border border-orange/10 bg-white p-8 transition-all duration-200 hover:border-orange/20 hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)] md:p-[49px]">
       <div
         className="h-[3px] w-9 rounded-sm bg-gradient-to-r from-orange to-orange-light"
         aria-hidden

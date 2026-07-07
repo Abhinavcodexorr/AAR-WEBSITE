@@ -23,17 +23,17 @@ export function OurValuesSection() {
             <GradientText>{ourValues.gradient}</GradientText>
           </h2>
 
-          <StaggerContainer className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer className="mt-10 grid gap-5 sm:items-stretch md:mt-12 md:grid-cols-2 lg:grid-cols-3">
             {topRow.map((value) => (
-              <StaggerItem key={value.number}>
+              <StaggerItem key={value.number} className="h-full">
                 <ValueCard {...value} />
               </StaggerItem>
             ))}
           </StaggerContainer>
 
-          <StaggerContainer className="mt-5 grid gap-5 md:grid-cols-2 lg:mx-auto lg:max-w-[calc(66.666%+20px)] lg:grid-cols-2">
+          <StaggerContainer className="mt-5 grid gap-5 sm:items-stretch md:grid-cols-2 lg:mx-auto lg:max-w-[calc(66.666%+20px)] lg:grid-cols-2">
             {bottomRow.map((value) => (
-              <StaggerItem key={value.number}>
+              <StaggerItem key={value.number} className="h-full">
                 <ValueCard {...value} />
               </StaggerItem>
             ))}
@@ -54,7 +54,7 @@ function ValueCard({
   description: string;
 }) {
   return (
-    <article className="rounded-[14px] border border-orange/[0.08] bg-peach-light p-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-white hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]">
+    <article className="flex h-full flex-col rounded-[14px] border border-orange/[0.08] bg-peach-light p-[33px] transition-all duration-200 hover:border-orange/20 hover:bg-white hover:shadow-[0_8px_24px_rgba(232,69,26,0.06)]">
       <div className="flex items-center gap-2.5">
         <span className="font-display text-2xl font-extrabold text-orange/22">
           {number}
