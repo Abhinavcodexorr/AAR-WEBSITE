@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { SectionFade } from "@/components/MotionWrapper";
 import { SiteLogo } from "@/components/ui/SiteLogo";
 import { footer } from "@/data/home";
 import { contactInfo } from "@/data/contact";
@@ -19,6 +22,7 @@ type FooterProps = {
 
 export function Footer({ showCtaBanner = true }: FooterProps) {
   return (
+    <SectionFade>
     <footer className="bg-dark text-white/40" aria-label="Site footer">
       {showCtaBanner && (
         <div
@@ -146,6 +150,7 @@ export function Footer({ showCtaBanner = true }: FooterProps) {
         </Container>
       </div>
     </footer>
+    </SectionFade>
   );
 }
 

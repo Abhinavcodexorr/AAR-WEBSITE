@@ -1,22 +1,31 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
+import { SectionFade, StaggerContainer, StaggerItem } from "@/components/MotionWrapper";
 import { visionMission } from "@/data/about";
 
 export function VisionMissionSection() {
   return (
-    <section aria-label="Vision and Mission" className="bg-peach py-16 md:py-20">
-      <Container>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <VisionMissionCard
-            title={visionMission.vision.title}
-            description={visionMission.vision.description}
-          />
-          <VisionMissionCard
-            title={visionMission.mission.title}
-            description={visionMission.mission.description}
-          />
-        </div>
-      </Container>
-    </section>
+    <SectionFade>
+      <section aria-label="Vision and Mission" className="bg-peach py-16 md:py-20">
+        <Container>
+          <StaggerContainer className="grid gap-8 lg:grid-cols-2">
+            <StaggerItem>
+              <VisionMissionCard
+                title={visionMission.vision.title}
+                description={visionMission.vision.description}
+              />
+            </StaggerItem>
+            <StaggerItem>
+              <VisionMissionCard
+                title={visionMission.mission.title}
+                description={visionMission.mission.description}
+              />
+            </StaggerItem>
+          </StaggerContainer>
+        </Container>
+      </section>
+    </SectionFade>
   );
 }
 

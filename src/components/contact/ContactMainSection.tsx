@@ -1,55 +1,60 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
+import { FadeIn } from "@/components/MotionWrapper";
 import { contactInfo } from "@/data/contact";
 import { ContactForm } from "./ContactForm";
 
 export function ContactMainSection() {
   return (
-    <section aria-label="Contact details and form" className="bg-white py-16 md:py-20">
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-[348fr_695fr] lg:gap-12">
-          <aside aria-label="Contact information">
-            <ul className="space-y-[24px]">
-              <ContactInfoItem
-                icon={<MailIcon />}
-                label={contactInfo.email.label}
-                href={contactInfo.email.href}
-              >
-                {contactInfo.email.value}
-              </ContactInfoItem>
-              <ContactInfoItem
-                icon={<PhoneIcon />}
-                label={contactInfo.phone.label}
-                href={contactInfo.phone.href}
-              >
-                {contactInfo.phone.value}
-              </ContactInfoItem>
-              <ContactInfoItem icon={<LocationIcon />} label={contactInfo.location.label}>
-                {contactInfo.location.value}
-              </ContactInfoItem>
-            </ul>
+    <FadeIn delay={0.3} y={30}>
+      <section aria-label="Contact details and form" className="bg-white py-16 md:py-20">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[348fr_695fr] lg:gap-12">
+            <aside aria-label="Contact information">
+              <ul className="space-y-[24px]">
+                <ContactInfoItem
+                  icon={<MailIcon />}
+                  label={contactInfo.email.label}
+                  href={contactInfo.email.href}
+                >
+                  {contactInfo.email.value}
+                </ContactInfoItem>
+                <ContactInfoItem
+                  icon={<PhoneIcon />}
+                  label={contactInfo.phone.label}
+                  href={contactInfo.phone.href}
+                >
+                  {contactInfo.phone.value}
+                </ContactInfoItem>
+                <ContactInfoItem icon={<LocationIcon />} label={contactInfo.location.label}>
+                  {contactInfo.location.value}
+                </ContactInfoItem>
+              </ul>
 
-            <div className="mt-10 rounded-2xl border border-orange/10 bg-peach-soft px-7 py-7">
-              <div className="flex items-center gap-2">
-                <span
-                  className="size-2 shrink-0 rounded-full bg-orange"
-                  aria-hidden
-                />
-                <h3 className="font-display text-[15.2px] font-bold leading-[18px] text-text-dark">
-                  {contactInfo.responseCommitment.title}
-                </h3>
+              <div className="mt-10 rounded-2xl border border-orange/10 bg-peach-soft px-7 py-7">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="size-2 shrink-0 rounded-full bg-orange"
+                    aria-hidden
+                  />
+                  <h3 className="font-display text-[15.2px] font-bold leading-[18px] text-text-dark">
+                    {contactInfo.responseCommitment.title}
+                  </h3>
+                </div>
+                <p className="mt-3 pt-3 text-[15.2px] leading-[26px] text-gray-500">
+                  {contactInfo.responseCommitment.description}
+                </p>
               </div>
-              <p className="mt-3 pt-3 text-[15.2px] leading-[26px] text-gray-500">
-                {contactInfo.responseCommitment.description}
-              </p>
-            </div>
-          </aside>
+            </aside>
 
-          <div className="rounded-[20px] border border-orange/10 bg-white p-6 shadow-[0_24px_64px_rgba(15,13,30,0.06)] sm:p-8 md:p-[49px]">
-            <ContactForm />
+            <div className="rounded-[20px] border border-orange/10 bg-white p-6 shadow-[0_24px_64px_rgba(15,13,30,0.06)] sm:p-8 md:p-[49px]">
+              <ContactForm />
+            </div>
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </FadeIn>
   );
 }
 

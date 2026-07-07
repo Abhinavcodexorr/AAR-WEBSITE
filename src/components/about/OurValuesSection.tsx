@@ -1,6 +1,9 @@
+"use client";
+
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { GradientText } from "@/components/ui/GradientText";
+import { SectionFade, StaggerContainer, StaggerItem } from "@/components/MotionWrapper";
 import { ourValues } from "@/data/about";
 
 export function OurValuesSection() {
@@ -8,30 +11,36 @@ export function OurValuesSection() {
   const bottomRow = ourValues.items.slice(3);
 
   return (
-    <section aria-label="Our Values" className="bg-white py-16 md:py-20">
-      <Container>
-        <Badge showDot={false} className="mb-5">
-          {ourValues.badge}
-        </Badge>
+    <SectionFade>
+      <section aria-label="Our Values" className="bg-white py-16 md:py-20">
+        <Container>
+          <Badge showDot={false} className="mb-5">
+            {ourValues.badge}
+          </Badge>
 
-        <h2 className="font-display text-[clamp(1.75rem,4vw,40.985px)] font-extrabold leading-[45.083px] tracking-[-1.2296px] text-text-dark lg:whitespace-nowrap">
-          {ourValues.title}{" "}
-          <GradientText>{ourValues.gradient}</GradientText>
-        </h2>
+          <h2 className="font-display text-[clamp(1.75rem,4vw,40.985px)] font-extrabold leading-[45.083px] tracking-[-1.2296px] text-text-dark lg:whitespace-nowrap">
+            {ourValues.title}{" "}
+            <GradientText>{ourValues.gradient}</GradientText>
+          </h2>
 
-        <div className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
-          {topRow.map((value) => (
-            <ValueCard key={value.number} {...value} />
-          ))}
-        </div>
+          <StaggerContainer className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
+            {topRow.map((value) => (
+              <StaggerItem key={value.number}>
+                <ValueCard {...value} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
 
-        <div className="mt-5 grid gap-5 md:grid-cols-2 lg:mx-auto lg:max-w-[calc(66.666%+20px)] lg:grid-cols-2">
-          {bottomRow.map((value) => (
-            <ValueCard key={value.number} {...value} />
-          ))}
-        </div>
-      </Container>
-    </section>
+          <StaggerContainer className="mt-5 grid gap-5 md:grid-cols-2 lg:mx-auto lg:max-w-[calc(66.666%+20px)] lg:grid-cols-2">
+            {bottomRow.map((value) => (
+              <StaggerItem key={value.number}>
+                <ValueCard {...value} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </Container>
+      </section>
+    </SectionFade>
   );
 }
 

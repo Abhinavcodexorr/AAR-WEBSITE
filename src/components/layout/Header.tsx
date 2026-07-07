@@ -58,7 +58,7 @@ export function Header({ pathname = "/" }: HeaderProps) {
         </Container>
       </div>
 
-      <div className="relative border-b border-gray-100 bg-white shadow-sm">
+      <div className="relative border-b border-gray-100 bg-white shadow-sm transition-all duration-300">
         <Container className="flex h-12 items-center justify-between gap-3 lg:h-[72px]">
           <Link
             href="/"

@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { GradientText } from "@/components/ui/GradientText";
 import { capabilities } from "@/data/home";
 import { useInViewOnce } from "@/hooks/useCountUp";
+import { SectionFade } from "@/components/MotionWrapper";
 import { cn } from "@/lib/cn";
 
 const CAPABILITY_IMAGE_SIZES = "(max-width: 1024px) 100vw, 522px";
@@ -27,6 +28,7 @@ export function CoreCapabilitiesSection() {
     preloadImages || index === 0 || index === activeTab;
 
   return (
+    <SectionFade>
     <section
       id="services"
       aria-label="Core Capabilities"
@@ -176,6 +178,7 @@ export function CoreCapabilitiesSection() {
         </div>
       </Container>
     </section>
+    </SectionFade>
   );
 }
 
