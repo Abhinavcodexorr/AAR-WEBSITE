@@ -3,15 +3,18 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import type { LegalPageData, LegalPageSection } from "@/data/legalPageTypes";
+import { cn } from "@/lib/cn";
 
 type LegalDocumentContentSectionProps = {
   page: LegalPageData;
   ariaLabel: string;
+  linkPrivacyPolicy?: boolean;
 };
 
 export function LegalDocumentContentSection({
   page,
   ariaLabel,
+  linkPrivacyPolicy = true,
 }: LegalDocumentContentSectionProps) {
   return (
     <section aria-label={ariaLabel} className="bg-white pb-16 pt-10 md:pb-20 md:pt-12">
@@ -24,18 +27,23 @@ export function LegalDocumentContentSection({
 
             <div className="mt-8 space-y-4">
               {page.intro.map((paragraph) => (
-                <p
+                <LegalParagraph
                   key={paragraph}
-                  className="text-[15.2px] leading-[28px] text-gray-500"
+                  linkPrivacyPolicy={linkPrivacyPolicy}
+                  className="mt-0"
                 >
                   {paragraph}
-                </p>
+                </LegalParagraph>
               ))}
             </div>
 
             <div className="mt-10 space-y-10">
               {page.sections.map((section) => (
-                <LegalSection key={section.id} section={section} />
+                <LegalSection
+                  key={section.id}
+                  section={section}
+                  linkPrivacyPolicy={linkPrivacyPolicy}
+                />
               ))}
             </div>
           </div>
@@ -45,7 +53,13 @@ export function LegalDocumentContentSection({
   );
 }
 
-function LegalSection({ section }: { section: LegalPageSection }) {
+function LegalSection({
+  section,
+  linkPrivacyPolicy,
+}: {
+  section: LegalPageSection;
+  linkPrivacyPolicy: boolean;
+}) {
   return (
     <article id={section.id} className="scroll-mt-28">
       <div
@@ -57,7 +71,9 @@ function LegalSection({ section }: { section: LegalPageSection }) {
       </h2>
 
       {section.paragraphs?.map((paragraph) => (
-        <LegalParagraph key={paragraph}>{paragraph}</LegalParagraph>
+        <LegalParagraph key={paragraph} linkPrivacyPolicy={linkPrivacyPolicy}>
+          {paragraph}
+        </LegalParagraph>
       ))}
 
       {section.subsections?.map((subsection) => (
@@ -77,18 +93,33 @@ function LegalSection({ section }: { section: LegalPageSection }) {
       {section.items ? <LegalList items={section.items} /> : null}
 
       {section.paragraphsAfter?.map((paragraph) => (
-        <LegalParagraph key={paragraph}>{paragraph}</LegalParagraph>
+        <LegalParagraph key={paragraph} linkPrivacyPolicy={linkPrivacyPolicy}>
+          {paragraph}
+        </LegalParagraph>
       ))}
     </article>
   );
 }
 
-function LegalParagraph({ children }: { children: string }) {
+function LegalParagraph({
+  children,
+  linkPrivacyPolicy = true,
+  className,
+}: {
+  children: string;
+  linkPrivacyPolicy?: boolean;
+  className?: string;
+}) {
+  const paragraphClassName = cn(
+    "text-[15.2px] leading-[28px] text-gray-500",
+    className ?? "mt-4",
+  );
+
   if (children.includes("Contact Us page")) {
     const [before, after] = children.split("Contact Us page");
 
     return (
-      <p className="mt-4 text-[15.2px] leading-[28px] text-gray-500">
+      <p className={paragraphClassName}>
         {before}
         <Link
           href="/contact"
@@ -101,11 +132,11 @@ function LegalParagraph({ children }: { children: string }) {
     );
   }
 
-  if (children.includes("Privacy Policy")) {
+  if (linkPrivacyPolicy && children.includes("Privacy Policy")) {
     const [before, after] = children.split("Privacy Policy");
 
     return (
-      <p className="mt-4 text-[15.2px] leading-[28px] text-gray-500">
+      <p className={paragraphClassName}>
         {before}
         <Link
           href="/privacy-policy"
@@ -118,9 +149,7 @@ function LegalParagraph({ children }: { children: string }) {
     );
   }
 
-  return (
-    <p className="mt-4 text-[15.2px] leading-[28px] text-gray-500">{children}</p>
-  );
+  return <p className={paragraphClassName}>{children}</p>;
 }
 
 function LegalList({ items }: { items: string[] }) {

@@ -23,6 +23,7 @@ export default function PrivacyPolicyPage() {
         <LegalDocumentContentSection
           page={privacyPolicyPage}
           ariaLabel="Privacy Policy content"
+          linkPrivacyPolicy={false}
         />
       </main>
       <Footer showCtaBanner={false} />
