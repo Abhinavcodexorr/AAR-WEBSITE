@@ -101,7 +101,11 @@ export function Footer({ showCtaBanner = true }: FooterProps) {
                 Connect With Us
               </p>
               <div className="mt-[13.6px] flex gap-[10.4px]">
-                <SocialLink href="#" label="LinkedIn" iconSrc={footerIcons.linkedin} />
+                <SocialLink
+                  href="https://www.linkedin.com/company/aar-insights-and-research/"
+                  label="LinkedIn"
+                  iconSrc={footerIcons.linkedin}
+                />
                 <SocialLink href="#" label="Twitter" iconSrc={footerIcons.twitter} />
                 <SocialLink href="#" label="Facebook" iconSrc={footerIcons.facebook} />
               </div>
@@ -310,10 +314,15 @@ function SocialLink({
   label: string;
   iconSrc: string;
 }) {
+  const isExternal = href.startsWith("http");
+
   return (
     <a
       href={href}
       aria-label={label}
+      {...(isExternal
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
       className="flex size-9 items-center justify-center rounded-[8px] border border-white/[0.08] bg-white/[0.04] transition-colors hover:border-white/20 hover:bg-white/[0.08]"
     >
       <img src={iconSrc} alt="" width={16} height={16} className="size-4" />
